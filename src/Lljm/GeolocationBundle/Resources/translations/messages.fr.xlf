@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Geolocation</source>
+                <target>Geolocalisation</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Speed</source>
+                <target>Vitesse</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Battery</source>
+                <target>Batterie</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

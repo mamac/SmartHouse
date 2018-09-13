@@ -1,0 +1,45 @@
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+{% block title %}
+  Sub zones - {{ parent() }}
+{% endblock %}
+
+{% block lljm_home_body %}
+
+  <h2>{{ 'Sub zones' | trans }}</h2>
+
+        <div>
+          <a class="btn btn-default btn-sm glyphicon glyphicon-plus" href="{{ path('home_subzoneadd') }}">
+            {{ 'Add' | trans }}
+          </a>
+        </div>
+
+        <div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>{{ 'ID' | trans }}</th>
+                  <th>{{ 'Sub zone name' | trans }}</th>
+                  <th colspan = 2>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+			  {% for subzone in subzones %}
+                <tr>
+                  <td>{{ subzone.id}}</td>
+                  <td>{{ subzone.subzonename | trans }}</td>
+                  <td>
+                    <a class="btn glyphicon glyphicon-pencil red" href="{{ path('home_subzoneedit', {'id': subzone.id}) }}">
+                    <a class="btn glyphicon glyphicon-trash red " href="{{ path('home_subzonedel', {'id': subzone.id}) }}">
+                   </td>
+                </tr>
+			  {% else %}
+			    <p>{{ 'No record in this table' | trans }}.</p>
+			  {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      </div>
+
+{% endblock %}

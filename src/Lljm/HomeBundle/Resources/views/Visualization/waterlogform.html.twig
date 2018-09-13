@@ -1,0 +1,35 @@
+<div>
+<form action="{{ path('home_waterlogadd') }}" method="post">
+
+{{ form_errors(form) }}
+
+<div class="input-group">
+	<div class="form-group">
+	  {{ form_label(form.metervalue, "Meter value") }}
+	  {{ form_errors(form.metervalue) }}
+	  {{ form_widget(form.metervalue) }}
+	</div>
+	<div class="form-group">
+	  {{ form_label(form.consumption, "Consumption") }}
+	  {{ form_errors(form.consumption) }}
+	  {{ form_widget(form.consumption) }}
+	</div>
+	<div class="form-group">
+	  {{ form_label(form.meterid, "Meter name") }}
+	  {{ form_errors(form.meterid) }}
+	  {{ form_widget(form.meterid) }}
+	</div>
+	<div class="form-group">
+	  {{ form_label(form.daterx, "Read date") }}
+	  {{ form_errors(form.daterx) }}
+	  {{ form_widget(form.daterx) }}
+	</div>
+	{{ form_rest(form) }}
+
+	<div>
+	  <input type="submit" class="btn btn-primary" />
+	</div>
+</div>
+
+</form>
+</div>

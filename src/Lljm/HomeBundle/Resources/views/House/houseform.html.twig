@@ -1,0 +1,40 @@
+<div>
+<form action="{{ path('home_houseadd') }}" method="post">
+
+{{ form_errors(form) }}
+
+<div class="input-group">
+	<div class="form-group">
+	  {{ form_label(form.address1, "Address 1") }}
+	  {{ form_errors(form.address1) }}
+	  {{ form_widget(form.address1) }}
+	</div>
+	<div class="form-group">
+	  {{ form_label(form.address2, "Address 2") }}
+	  {{ form_errors(form.address2) }}
+	  {{ form_widget(form.address2) }}
+	</div>
+	<div class="form-group">
+	  {{ form_label(form.postcode, "Postal code") }}
+	  {{ form_errors(form.postcode) }}
+	  {{ form_widget(form.postcode) }}
+	</div>
+	<div class="form-group">
+	  {{ form_label(form.city, "City") }}
+	  {{ form_errors(form.city) }}
+	  {{ form_widget(form.city) }}
+	</div>
+	<div class="form-group">
+	  {{ form_label(form.country, "Country") }}
+	  {{ form_errors(form.country) }}
+	  {{ form_widget(form.country) }}
+	</div>
+	{{ form_rest(form) }}
+
+	<div>
+	  <input type="submit" class="btn btn-primary" />
+	</div>
+</div>
+
+</form>
+</div>

@@ -1,0 +1,172 @@
+{% extends "LljmGeolocationBundle::layout.html.twig" %}
+
+         {% block body %}
+  <h2>{{ 'Geolocation' | trans }}</h2>
+
+<script type="text/javascript">
+
+    function display() {
+
+      dst = "{{ path(app.request.attributes.get('_route')) }}" + '/';
+      dst += document.getElementById("datefrom").value + ',';
+      dst += document.getElementById("dateto").value + ',';
+      dst += document.getElementById("userlist").value;
+      
+      location.href = dst;
+  
+    }
+
+</script>
+
+<div>
+    <form class="form-inline" role="form" onsubmit="return false;">
+
+    <input type="text" id="datefrom" class="form-control datepicker" value="{{ datefrom }}" placeholder="{{ 'date from' | trans}}">
+    <input type="text" id="dateto" class="form-control datepicker" value="{{ dateto }}"  placeholder="{{ 'date to' | trans}}">
+
+    <select id="userlist" class="form-control">
+      {% for users in users %}
+
+      <option value="{{ users.id }}" {% if userid == users.id %} selected {% endif %} >{{ users.firstname }}</option>
+
+      {% endfor %}
+    </select>
+
+    <button type="submit" class = "btn btn-default" onclick="return display()">{{ "Search" | trans }}</button>
+
+    </form>
+</div>
+<br>
+<br>
+
+<div class="container-fluid">
+
+<div class="row-fluid">
+
+<div id="geolocMap" style="height:350px"></div>
+
+</div>
+</div>
+
+<script src="OpenLayers.js"></script>
+<script>
+
+{% for geoloclogs in geoloclogs %}
+
+  var x= {{ geoloclogs.longitude }};
+  var y= {{ geoloclogs.latitude }};
+
+{% endfor %}
+
+  var map = new ol.Map({
+  target: 'geolocMap',
+  layers: [
+    new ol.layer.Tile({
+      source: new ol.source.OSM()
+    })
+  ],
+  view: new ol.View({
+    center: ol.proj.transform([x, y], 'EPSG:4326', 'EPSG:3857'),
+    zoom: 15
+  })
+});
+
+    var vectorSource = new ol.source.Vector({
+        //create empty vector
+    });
+
+    var markers = []; 
+
+    function AddMarkers() {
+
+{% set i = 0 %}
+
+{% for geoloclogs in geoloclogs %}
+
+            var x= {{ geoloclogs.longitude }};
+            var y= {{ geoloclogs.latitude }};
+
+            var iconFeature = new ol.Feature({
+                geometry: new ol.geom.Point(ol.proj.transform([x,y], 'EPSG:4326',   'EPSG:3857')),
+                name: 'Marker {{ geoloclogs.id }}'
+            });
+            markers[{{ i }}]=  ol.proj.transform([x,y], 'EPSG:4326',   'EPSG:3857');
+            vectorSource.addFeature(iconFeature);
+
+            var rotation= {{ geoloclogs.direction }} * Math.PI / 180;
+
+          iconFeature.setStyle(new ol.style.Style({
+                image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
+                    anchor: [0.5, 0.5],
+                    rotation: rotation,
+                    anchorXUnits: 'fraction',
+                    anchorYUnits: 'fraction',
+                    src: '{{ asset('bundles/lljmgeolocation/images/arrow_alt_up.png') }}'
+                }))
+            }));
+
+{% set i = i + 1 %}
+
+{% endfor %}
+  
+
+        //add the vector feature to the layer vector
+        var vectorLayer = new ol.layer.Vector({
+            source: vectorSource
+        });
+        return vectorLayer;
+    }
+
+
+    var layerMarkers = AddMarkers();
+
+var layerLines = new ol.layer.Vector({
+    source: new ol.source.Vector({
+        features: [new ol.Feature({
+            geometry: new ol.geom.LineString(markers, 'XY'),
+            name: 'Line'
+        })]
+    })
+});
+
+    map.addLayer(layerMarkers);
+    map.addLayer(layerLines);
+    console.log(layerLines.getSource());
+
+
+</script>
+
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>{{ 'User' | trans }}</th>
+            <th>{{ 'Latitude' | trans }}</th>
+            <th>{{ 'Longitude' | trans }}</th>
+            <th>{{ 'Altitude' | trans }}</th>
+            <th>{{ 'Speed' | trans }} (km/h)</th>
+            <th>{{ 'Direction' | trans }} (Deg.)</th>
+            <th>{{ 'Battery' | trans }}</th>
+            <th>{{ 'Date' | trans }} (UTC)</th>
+          </tr>
+        </thead>
+        <tbody>
+  {% for geoloclogs in geoloclogs %}
+          <tr>
+            <td>{{ geoloclogs.firstname }}</td>
+            <td>{{ geoloclogs.latitude }}</td>
+            <td>{{ geoloclogs.longitude }}</td>
+            <td>{{ geoloclogs.altitude }}</td>
+            <td>{{ (geoloclogs.speed * 3600 / 1000) | round }}</td>
+            <td>{{ geoloclogs.direction | round }}</td>
+            <td>{{ geoloclogs.battery }}%</td>
+            <td>{{ geoloclogs.logdate | date("Y-m-d H:i:s") }}</td>
+          </tr>
+  {% else %}
+    <p>{{ 'No record in this table' | trans }}.</p>
+  {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+          {% endblock %}

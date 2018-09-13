@@ -1,0 +1,95 @@
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+{% block title %}
+  Heating - {{ parent() }}
+{% endblock %}
+
+{% block lljm_home_body %}
+
+  <h2>{{ 'Heating' | trans }}</h2>
+
+        <div>
+          <p><h3>{{ 'Outside temperature' | trans }} : {{ outsidetemp.0.currenttemp }}&deg;C</h3></p>
+        </div>
+        <div>
+          {% if boilerzone is not empty %}
+          <h3>{{ 'Boiler status' | trans }} :
+          {% if heatinglog is not empty %}
+            {% if heatinglog.0.boilerstatus == 1 %}
+              <img src="/bundles/lljmhome/images/widgets/button/on-button.png" style="width:25px;height:25px;">
+            {% else %}
+              <img src="/bundles/lljmhome/images/widgets/button/off-button.png" style="width:25px;height:25px;">
+            {% endif %}</h3>
+          {% else %}
+            {{ 'Boiler status not available' | trans}}
+          {% endif %}
+          {% endif %}
+          <button type="submit" class="btn glyphicon glyphicon-asterisk" onclick="location.href = '{{ path('home_zoneheatingmodeupdate') }}/3'"></button>
+          <button type="submit" class="btn glyphicon glyphicon-leaf" onclick="location.href = '{{ path('home_zoneheatingmodeupdate') }}/2'"></button>
+          <button type="submit" class="btn glyphicon glyphicon-fire" onclick="location.href = '{{ path('home_zoneheatingmodeupdate') }}/1'"></button>
+          <button type="submit" class="btn glyphicon glyphicon-time" onclick="location.href = '{{ path('home_zoneheatingmodeupdate') }}/4'"></button>
+        </div>
+        <div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>{{ 'Zone name' | trans }}</th>
+                  <th>{{ 'Eco' | trans }}</th>
+                  <th>{{ 'Comfort' | trans }}</th>
+                  <th>{{ 'Current' | trans }}</th>
+                  <th>{{ 'Mode' | trans }}</th>
+                  <th>{{ 'Heating status' | trans }}</th>
+                  <th>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+			  {% for zoneheating in zoneheatings %}
+                <tr>
+                  <td>{{ zoneheating.zonename | trans }}</td>
+                  <td>{{ zoneheating.tempeco | trans }}&deg;C</td>
+                  <td>{{ zoneheating.tempcomfort | trans }}&deg;C</td>
+                  <td>{{ zoneheating.currenttemp | trans }}&deg;C</td>
+                  <td>{{ zoneheating.modedesc | trans }}</td>
+                  <td>{% if zoneheating.heatingstatus == 1 %}
+                      <img src="{{ asset('bundles/lljmhome/images/widgets/button/on-button.png') }}" style="width:25px;height:25px;">
+                      {% else %}
+                      <img src="{{ asset('bundles/lljmhome/images/widgets/button/off-button.png') }}" style="width:25px;height:25px;">
+                      {% endif %}</td>
+                  <td>
+                    <button type="submit" class="btn glyphicon glyphicon-asterisk" onclick="location.href = '{{ path('home_onezoneheatingmodeupdate', {'id': zoneheating.id, 'heatingmode': '3'}) }}'"></button>
+                    <button type="submit" class="btn glyphicon glyphicon-leaf" onclick="location.href = '{{ path('home_onezoneheatingmodeupdate', {'id': zoneheating.id, 'heatingmode': '2'}) }}'"></button>
+                    <button type="submit" class="btn glyphicon glyphicon-fire" onclick="location.href = '{{ path('home_onezoneheatingmodeupdate', {'id': zoneheating.id, 'heatingmode': '1'}) }}'"></button>
+                    <button type="submit" class="btn glyphicon glyphicon-time" onclick="location.href = '{{ path('home_onezoneheatingmodeupdate', {'id': zoneheating.id, 'heatingmode': '4'}) }}'"></button>
+                    <button type="submit" class="btn glyphicon glyphicon-pencil" onclick="location.href = '{{ path('home_action_heatingedit', {'id': zoneheating.id}) }}'"></button>
+                  </td>
+                </tr>
+			  {% else %}
+			    <p>{{ 'No record in this table' | trans }}.</p>
+			  {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      </div>
+<div class="panel-group" id="accordion" role="tablist">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingHelp">
+            <a data-toggle="collapse" data-parent="#accordion" href="#help" aria-expanded="true"
+               aria-controls="help">
+                <span class="glyphicon glyphicon-question-sign"></span>
+                Log
+            </a>
+        </div>
+        <div id="help" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingHelp"
+             aria-expanded="false">
+            <div class="panel-body">
+          {% if heatinglog is not empty %}
+              {{ heatinglog.0.textlog | nl2br }}
+          {% else %}
+              {{ 'Heating log is empty' | trans}}
+          {% endif %}          
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

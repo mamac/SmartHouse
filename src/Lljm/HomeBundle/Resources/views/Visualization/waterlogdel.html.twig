@@ -1,0 +1,29 @@
+
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+{% block title %}
+  Delete Water log - {{ parent() }}
+{% endblock %}
+
+{% block lljm_home_body %}
+
+  <h2>{{ 'Delete a record in the water log' | trans }}</h2>
+
+  <p>
+    {{ 'Confirm you want to delete the record below' | trans }}:
+    <br>
+    - {{ waterlog.id }}<br>
+    - {{ waterlog.daterx | date("Y-m-d H:i:s") }}<br>
+    - {{ waterlog.metervalue }}<br>
+    - {{ waterlog.meterid.metername }}<br>
+  </p>
+
+  <form action="{{ path('home_waterlogdel', {'id': waterlog.id}) }}" method="post">
+    <a href="{{ path('home_watervisual')}}" class="btn btn-default glyphicon glyphicon-chevron-left">
+      Back
+    </a>
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    {{ form_rest(form) }}
+  </form>
+
+{% endblock %}

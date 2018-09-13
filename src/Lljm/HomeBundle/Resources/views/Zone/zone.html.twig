@@ -1,0 +1,57 @@
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+{% block title %}
+  Zones - {{ parent() }}
+{% endblock %}
+
+{% block lljm_home_body %}
+
+  <h2>{{ 'Zones' | trans }}</h2>
+
+        <div>
+          <a class="btn btn-default btn-sm glyphicon glyphicon-plus" href="{{ path('home_zoneadd') }}">
+            {{ 'Add' | trans }}
+          </a>
+        </div>
+
+        <div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>{{ 'ID' | trans }}</th>
+                  <th>{{ 'Zone name' | trans }}</th>
+                  <th>{{ 'Heated zone' | trans }}</th>
+                  <th>{{ 'Current temperature' | trans }}</th>
+                  <th>{{ 'Heating status' | trans }}</th>
+                  <th colspan = 2>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+			  {% for zone in zones %}
+                <tr>
+                  <td>{{ zone.id}}</td>
+                  <td>{{ zone.zonename | trans }}</td>
+                  <td>{% if zone.heatingenabled == 1 %}
+                      {{ 'Yes' | trans }}
+                      {% endif %}</td>
+                  <td>{{ zone.currenttemp }}</td>
+                  <td>{% if zone.heatingstatus == 1 %}
+                      {{ 'On' }}
+                      {% else %}
+                      {{ 'Off' }}
+                      {% endif %}</td>
+                  <td>
+                    <a class="btn glyphicon glyphicon-pencil red" href="{{ path('home_zoneedit', {'id': zone.id}) }}">
+                    <a class="btn glyphicon glyphicon-trash red " href="{{ path('home_zonedel', {'id': zone.id}) }}">
+                   </td>
+                </tr>
+			  {% else %}
+			    <p>{{ 'No record in this table' | trans }}.</p>
+			  {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      </div>
+
+{% endblock %}

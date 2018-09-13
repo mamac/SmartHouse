@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Users profiles administration</source>
+                <target>Gestion des profiles utilisateurs</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>User name</source>
+                <target>Nom d'utilisateur</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Last login</source>
+                <target>Derniere connexion</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Users</source>
+                <target>Utilisateurs</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Enabled</source>
+                <target>Actif</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>First name</source>
+                <target>Prenom</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Last name</source>
+                <target>Nom</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Password</source>
+                <target>Mot de passe</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Update user</source>
+                <target>Modification utilisateur</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Add a user</source>
+                <target>Ajouter un utilisateur</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Delete a user</source>
+                <target>Supprimer un utilisateur</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Confirm you want to delete user</source>
+                <target>Confirmer la suppression de l'utilisateur</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

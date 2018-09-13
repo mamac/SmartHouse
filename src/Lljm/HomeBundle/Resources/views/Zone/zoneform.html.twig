@@ -1,0 +1,20 @@
+<div>
+<form action="{{ path('home_zoneadd') }}" method="post">
+
+{{ form_errors(form) }}
+
+<div class="input-group">
+	<div class="form-group">
+	  {{ form_label(form.zonename, "Zone name") }}
+	  {{ form_errors(form.zonename) }}
+	  {{ form_widget(form.zonename) }}
+	</div>
+	{{ form_rest(form) }}
+
+	<div>
+	  <input type="submit" class="btn btn-primary" />
+	</div>
+</div>
+
+</form>
+</div>

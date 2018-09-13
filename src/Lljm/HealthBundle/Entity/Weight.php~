@@ -1,0 +1,46 @@
+<?php
+
+namespace Lljm\HealthBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Weight
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Lljm\HealthBundle\Entity\WeightRepository")
+ */
+class Weight
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="weight_value", type="decimal")
+     */
+    private $weightValue;
+
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Lljm\UserBundle\Entity\User", cascade={"persist"})
+    */
+    private $user;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_read", type="date")
+     */
+    private $dateRead;
+
+
+
+}

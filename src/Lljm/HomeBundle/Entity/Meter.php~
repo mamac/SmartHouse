@@ -1,0 +1,56 @@
+<?php
+
+namespace Lljm\HomeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * Meter
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Lljm\HomeBundle\Entity\MeterRepository")
+ */
+class Meter
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="metername", type="string", length=255)
+     */
+    private $metername;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Lljm\HomeBundle\Entity\Resource", cascade={"persist"})
+    * @Assert\NotBlank()
+    */
+    private $resource;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Lljm\HomeBundle\Entity\Unit", cascade={"persist"})
+    * @Assert\NotBlank()
+    */
+    private $unit;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+}

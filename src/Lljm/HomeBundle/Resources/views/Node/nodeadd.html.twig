@@ -1,0 +1,16 @@
+
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+
+{% block title %}
+  Nodes - {{ parent() }}
+{% endblock %}
+
+{% block lljm_home_body %}
+
+  <h2>{{ 'Add a node' | trans }}</h2>
+<ul>
+  {% include "LljmHomeBundle:Node:nodeform.html.twig" %}
+</ul>
+{% endblock %}
+

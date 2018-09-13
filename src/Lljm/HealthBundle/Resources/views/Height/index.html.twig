@@ -1,0 +1,110 @@
+{% extends "LljmHealthBundle::layout.html.twig" %}
+
+         {% block body %}
+  <h2>{{ 'Height follow up' | trans }}</h2>
+
+<script type="text/javascript">
+
+    function display() {
+
+      dst = "{{ path(app.request.attributes.get('_route')) }}" + '/';
+      dst += document.getElementById("datefrom").value + ',';
+      dst += document.getElementById("dateto").value + ',';
+      dst += document.getElementById("userlist").value;
+      
+      location.href = dst;
+  
+    }
+
+</script>
+
+<div>
+	<form class="form-inline" role="form" onsubmit="return false;">
+
+	<input type="text" id="datefrom" class="form-control datepicker" value="{{ datefrom }}" placeholder="{{ 'date from' | trans}}">
+	<input type="text" id="dateto" class="form-control datepicker" value="{{ dateto }}"  placeholder="{{ 'date to' | trans}}">
+
+	<select id="userlist" class="form-control">
+	  {% for userlist in userlist %}
+
+	  <option value="{{ userlist.id }}" {% if user == userlist.id %} selected {% endif %} >{{ userlist.firstname | trans }}</option>
+
+	  {% endfor %}
+	</select>
+
+	<button type="submit" class = "btn btn-default" onclick="return display()">{{ "Search" | trans }}</button>
+
+	</form>
+</div>
+<br>
+        <div>
+          <a class="btn btn-default btn-sm glyphicon glyphicon-plus" href="{{ path('health_heightadd') }}">
+            {{ 'Add' | trans }}
+          </a>
+        </div>
+
+<br>
+
+
+<div id="lineChart" class="epoch" style="height: 250px"></div>
+
+<script>
+(function() {
+
+var lineChartData = [
+  { label: "Series 1",
+   values: [
+  {% for height in heights %}
+     {x: {{ height.dateRead | date("U")}}, y: {{ height.heightValue }}},
+  {% endfor %}
+   ]
+  }
+];
+
+  $('#lineChart').epoch({
+     type: 'line',
+     data: lineChartData,
+     axes: ['left', 'bottom'],
+     ticks: { left: 5, bottom: 10 },
+     tickFormats: { bottom:
+       function(d) {
+         var date = new Date(d*1000);
+
+         var date_year   = date.getFullYear();
+         var date_month  = date.getMonth() + 1;
+         var date_day    = date.getDate();
+
+         return date_year + '-' + date_month + '-' + date_day;
+       }
+     }
+  });
+})();
+
+</script>
+</div>
+<br>
+
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>{{ 'User' | trans }}</th>
+            <th>{{ 'Date read' | trans }}</th>
+            <th>{{ 'Height' | trans }}</th>
+          </tr>
+        </thead>
+        <tbody>
+  {% for height in heights %}
+          <tr>
+            <td>{{ height.firstname }}</td>
+            <td>{{ height.dateRead | date("Y-m-d H:i:s") }}</td>
+            <td>{{ height.heightValue }}</td>
+          </tr>
+  {% else %}
+    <p>{{ 'No record in this table' | trans }}.</p>
+  {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+          {% endblock %}

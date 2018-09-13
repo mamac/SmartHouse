@@ -1,0 +1,16 @@
+
+{% extends "LljmHealthBundle::layout.html.twig" %}
+
+
+{% block title %}
+  Height - {{ parent() }}
+{% endblock %}
+
+{% block lljm_health_body %}
+
+  <h2>{{ 'Add a height reading' | trans }}</h2>
+<ul>
+  {% include "LljmHealthBundle:Height:heightform.html.twig" %}
+</ul>
+{% endblock %}
+

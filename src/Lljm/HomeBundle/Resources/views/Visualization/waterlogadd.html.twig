@@ -1,0 +1,16 @@
+
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+
+{% block title %}
+  Water log - {{ parent() }}
+{% endblock %}
+
+{% block lljm_home_body %}
+
+  <h2>{{ 'Add a record in the water log' | trans }}</h2>
+<ul>
+  {% include "LljmHomeBundle:Visualization:waterlogform.html.twig" %}
+</ul>
+{% endblock %}
+

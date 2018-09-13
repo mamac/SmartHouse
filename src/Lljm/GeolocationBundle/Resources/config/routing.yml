@@ -1,0 +1,4 @@
+geolocation_index:
+    path:     /geolocation_index/{datefrom},{dateto},{userid}
+    defaults: { _controller: LljmGeolocationBundle:Default:index, datefrom: "", dateto: "", userid: "" }
+

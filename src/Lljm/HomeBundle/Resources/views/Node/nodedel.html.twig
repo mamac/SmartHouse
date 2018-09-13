@@ -1,0 +1,28 @@
+
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+{% block title %}
+  Delete node - {{ parent() }}
+{% endblock %}
+
+{% block lljm_home_body %}
+
+  <h2>{{ 'Delete a node' | trans }}</h2>
+
+  <p>
+    {{ 'Confirm you want to delete the node below' | trans }}:
+    <br>
+    - {{ node.nodeguid }}<br>
+    - {{ node.nodetype.nodetype }}<br>
+    - {{ node.nodezone.zonename }}<br>
+  </p>
+
+  <form action="{{ path('home_nodedel', {'id': node.id}) }}" method="post">
+    <a href="{{ path('home_node')}}" class="btn btn-default glyphicon glyphicon-chevron-left">
+      Back
+    </a>
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    {{ form_rest(form) }}
+  </form>
+
+{% endblock %}

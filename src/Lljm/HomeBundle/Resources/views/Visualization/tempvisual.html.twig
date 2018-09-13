@@ -1,0 +1,144 @@
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+{% block title %}
+  Temperature visualization - {{ parent() }}
+{% endblock %}
+
+{% block lljm_home_body %}
+
+  <h2>{{ 'Temperature visualization' | trans }}</h2>
+
+<script type="text/javascript">
+
+    function display() {
+
+      dst = "{{ path(app.request.attributes.get('_route')) }}" + '/';
+      dst += document.getElementById("daterx").value;
+      
+      location.href = dst;
+  
+    }
+
+</script>
+
+<div>
+
+<form class="form-inline" role="form" onsubmit="return false;">
+
+<input type="text" id="daterx" class="form-control datepicker" value="{{ daterx }}" placeholder="{{ 'date' | trans}}">
+
+<button type="submit" class = "btn btn-default" onclick="return display()">{{ "Search" | trans }}</button>
+
+</form>
+
+
+{% if tempcharts %}
+   <div style="width:100%;">
+        <canvas id="tempChart" height="150"></canvas>
+    </div>
+
+    <script>
+
+    var ctx = document.getElementById("tempChart").getContext("2d");
+
+    function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+    }
+
+    var timeFormat = 'MM/DD/YYYY HH:mm';
+    {% set currentZoneId = '' %}
+
+        var config = {
+            type: 'line',
+            data: {
+                datasets: [
+
+  {% for tempchart in tempcharts %}
+    {% if currentZoneId != tempchart.id %}
+                {
+                    label: "{{ tempchart.zonename |trans }}",
+                    backgroundColor: getRandomColor(),
+                    borderColor: ['rgba(0, 0, 0, 0.1)'],
+                    data: [
+
+    {% set currentZoneId = tempchart.id %}
+
+    {% endif %} // end if currentZoneId  
+
+                    {
+                    x: '{{ tempchart.daterx | date('m/d/Y H:i') }}',
+                    y: {{ tempchart.tmpvalue }}
+                    },
+
+    {% if not loop.last %}
+    {% if currentZoneId != tempcharts[loop.index].id %}
+                    ],
+                    fill: false,
+                },
+
+    {% endif %}
+    {% else %}
+                    ],
+                    fill: false,
+                },
+    {% endif %}
+
+  {% endfor %}
+                ]
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Temperature {{ daterx }}'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        type: "time",
+                        time: {
+                            displayFormats: {
+                            quarter: 'MMM YYYY'
+                            }
+                        },
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    },],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Deg. Celsius'
+                        }
+                    }]
+                }
+            }
+        };
+
+        window.onload = function() {
+            window.myLine = new Chart(ctx, config);
+            console.log(config);
+        };
+
+    </script>
+{% endif %}
+
+
+</div>
+
+{% endblock %}

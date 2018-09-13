@@ -1,0 +1,97 @@
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+   {% block body %}
+
+<script type="text/javascript" >
+
+    var vscpeventCtrl = new vscpws_Event( vscp_setting_user,
+                                            vscp_setting_passwordhash,
+                                            vscp_setting_url );
+
+    var vscpTurnOnEvent = function(var_index, var_zone, var_subzone) 
+    {
+        if ( vscpeventCtrl.isOpen() ) {
+            console.log("ON Event");
+            var  data = new Array(var_index,var_zone,var_subzone); // optional=0, zone=0, subzone=0
+            vscpeventCtrl.sendEvent( 0,                             // head
+                                        VSCP_CLASS1_CONTROL,        // VSCP Class
+                                        VSCP_TYPE_CONTROL_TURNON,   // VSCP Type
+                                        0,                          // obid
+                                        0,                          // timestamp
+                                        "-",                        // Use interface GUID
+                                        data                        // data (can be sent as a comma separated string also)
+                                    );
+        }
+        else {
+            alert("Not connected");
+        }
+    }
+    
+    var vscpTurnOffEvent = function(var_index, var_zone, var_subzone) 
+    {
+        if ( vscpeventCtrl.isOpen() ) {
+            console.log("OFF Event");
+            var  data = new Array(var_index,var_zone,var_subzone);
+            vscpeventCtrl.sendEvent( 0,                             // head
+                                        VSCP_CLASS1_CONTROL,        // VSCP Class
+                                        VSCP_TYPE_CONTROL_TURNOFF,  // VSCP Type
+                                        0,                          // obid
+                                        0,                          // timestamp
+                                        "-",                        // Use interface GUID
+                                        data                        // data (can be sent as a comma separated string also)
+                                    );
+        }
+        else {
+            alert("Not connected");
+        }
+    }    
+
+</script>
+
+<div id="header" class="hero-unit">
+  <h1>{{'Light management' | trans }}</h1>
+
+</div>
+
+{% set buttonTop = 0 %}
+
+{% for lightswitch in lightswitches %}
+  <div>
+  <p>
+    {{ lightswitch.zonename | trans }}
+    -
+    {{ lightswitch.subzonename | trans }}
+
+    <button onclick="vscpTurnOnEvent(0, {{ lightswitch.zoneid }}, {{ lightswitch.subzoneid }})">ON </button>
+         
+    <button onclick="vscpTurnOffEvent(0, {{ lightswitch.zoneid }}, {{ lightswitch.subzoneid }})">OFF</button>
+  </p>
+</div>
+
+<canvas id="buttonKitchen{{ buttonTop }}"
+    style="z-index: 3;
+    position:relative;
+    left:250px;
+    top:{{ buttonTop - 40 }}px;" height="30px" width="22px">
+    Your browser does not support HTML5 Canvas.
+</canvas>
+
+<script>
+    var btn1 = new vscpws_stateButton( vscp_setting_user,
+    vscp_setting_passwordhash,
+    vscp_setting_url, // url
+    'buttonKitchen{{ buttonTop }}',   // canvas for button
+    true,             // Local state change
+    93 );             // Looks for button
+
+    btn1.setMonitorVariable("SWITCH_STATUS_{{ lightswitch.zoneid }}_{{ lightswitch.subzoneid }}", 1000);         // Update and monitor
+
+</script>
+
+{% set buttonTop = buttonTop + 1 %}
+
+{% else %}
+    <p>{{ 'No record in this table' | trans }}.</p>
+{% endfor %}
+
+          {% endblock %}

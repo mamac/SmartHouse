@@ -1,0 +1,94 @@
+<script>
+        function printValue(sliderID, textbox) {
+            var x = document.getElementById(textbox);
+            var y = document.getElementById(sliderID);
+            x.value = y.value;
+        }
+
+        window.onload = function() { printValue('slider1', 'rangeValue1'); printValue('slider2', 'rangeValue2'); printValue('slider3', 'rangeValue3'); printValue('slider4', 'rangeValue4'); }
+    </script>
+
+<div>
+<form action="{{ path('home_action_heatingedit', {'id': zone.id}) }}" method="post">
+
+<h3>{{ zone.zonename | trans }}</h3>
+
+
+<div class="input-group">
+	<div class="form-group">
+			{{ 'Eco' | trans }}:
+			<input id="rangeValue1" type="text" size="4" readonly>&deg;C
+			<input id="slider1" type="range" name="tempeco" value="{{ zone.tempeco }}" min="12" max="17" step="0.5" onchange="printValue('slider1','rangeValue1')" style="width: 200px;">
+
+	</div>
+	<div class="form-group">
+	  {{ 'Comfort' | trans }}:
+	  		<input id="rangeValue2" type="text" size="4" readonly>&deg;C
+			<input id="slider2" type="range" name="tempcomfort" value="{{ zone.tempcomfort }}" min="17" max="25" step="0.5" onchange="printValue('slider2','rangeValue2')" style="width: 200px;">
+
+	</div>
+	<div class="dropdown">
+	  {{ 'Mode' | trans }}:<br>
+		<select name="heatingmode" class="form-control" style="width: 200px;">
+			<option value="1" {% if zone.heatingmode == 1 %} selected {% endif %}>{{ 'Comfort' | trans }}</option>
+			<option value="2" {% if zone.heatingmode == 2 %} selected {% endif %}>{{ 'Eco' | trans }}</option>
+	  		<option value="3" {% if zone.heatingmode == 3 %} selected {% endif %}>{{ 'No frost' | trans }}</option>
+	  		<option value="4" {% if zone.heatingmode == 4 %} selected {% endif %}>{{ 'Auto' | trans }}</option>
+
+		</select>
+	</div>
+	<br>
+	<br>
+	<div>
+		{{ 'Schedule' | trans }}:
+	</div>
+<table class="table">
+	<tr>
+		<td>&nbsp;</td>
+		{% for i in 0..23 %}
+		    <th>{{ i | number_format(0) }}</th>
+		{% endfor %}
+	</tr>
+
+	{% for i in 0..6 %}
+		<tr>
+		{% if i == 0 %}
+			<th>{{ 'Monday' | trans }} </th>
+		{% endif %}
+		{% if i == 1 %}
+			<th>{{ 'Tuesday' | trans }} </th>
+		{% endif %}
+		{% if i == 2 %}
+			<th>{{ 'Wednesday' | trans }} </th>
+		{% endif %}
+		{% if i == 3 %}
+			<th>{{ 'Thursday' | trans }} </th>
+		{% endif %}
+		{% if i == 4 %}
+			<th>{{ 'Friday' | trans }} </th>
+		{% endif %}
+		{% if i == 5 %}
+			<th>{{ 'Saturday' | trans }} </th>
+		{% endif %}
+		{% if i == 6 %}
+			<th>{{ 'Sunday' | trans }} </th>
+		{% endif %}
+
+				{% for j in 0..23 %}
+				{% set slotnumber = 24 * i + j %}
+		    	<td>
+		    		<input type="checkbox" name="heatslot{{ slotnumber }}" {% if zone.heatschedule |slice( 24 * i + j, 1) == 1 %} checked {% endif %}>
+		    	</td>
+				{% endfor %}
+		</tr>	    
+	{% endfor %}
+
+</table>
+
+<div>
+	  <input type="submit" class="btn btn-primary" />
+	</div>
+</div>
+
+</form>
+</div>

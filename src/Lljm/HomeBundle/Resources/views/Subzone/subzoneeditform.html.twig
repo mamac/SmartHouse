@@ -1,0 +1,20 @@
+<div>
+<form action="{{ path('home_subzoneedit', {'id': subzone.id}) }}" method="post">
+
+{{ form_errors(form) }}
+
+<div class="input-group">
+	<div class="form-group">
+	  {{ form_label(form.subzonename, "Sub zone name")}}
+	  {{ form_errors(form.subzonename) }}
+	  {{ form_widget(form.subzonename) }}
+	</div>
+	{{ form_rest(form) }}
+
+	<div>
+	  <input type="submit" class="btn btn-primary" />
+	</div>
+</div>
+
+</form>
+</div>

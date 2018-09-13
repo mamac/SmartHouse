@@ -1,0 +1,207 @@
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+   {% block body %}
+
+<script type="text/javascript" >
+
+
+//        (function() {
+
+            // VSCP websocket connection
+            var vscpConn = null;
+
+            // Button in the living room
+//            var buttonLivingRoom = null;
+
+
+        // Wait until the whole website is loaded
+//        $( document ).ready( function() {
+
+            // Create a VSCP websocket
+            vscpConn = new vscp.Connection();
+
+            // Connect to VSCP server
+            vscpConn.connect({
+
+                url: settings.url,
+                userName: settings.user,
+                password: settings.password,
+                vscpkey: settings.vscpkey,
+                authdomain: settings.authdomain,
+
+                onSuccess: function( conn ) {
+
+                    // Start receiving VSCP events
+                        // Initialize canvas
+                        // Don't do this without a established connection, because
+                        // the button needs the connection object!
+                        initCanvas();
+
+                    vscpConn.start({
+
+                        onSuccess: function( conn ) {
+
+
+                            // Enable the user interface
+                            //ui.enable();
+                        },
+
+                        onError: function( conn ) {
+                            alert("Couldn't start receiving events.");
+                        }
+
+                    });
+
+                },
+
+                onError: function( conn ) {
+                    alert("Couldn't establish a connection.");
+                },
+
+            });
+//        });         // Wait until the whole website is loaded
+
+        // User interface data
+        var ui = {
+
+            enable: function() {
+                $( "#ui :input" ).attr( "disabled", false );
+            },
+
+            disable: function() {
+                $( "#ui :input" ).attr( "disabled", true );
+            }
+        };
+
+
+        function vscpTurnOnEvent(data1, data2, data3) {
+
+            ui.disable();
+
+            vscpConn.sendEvent({
+                event: new vscp.Event({
+                    vscpClass:      vscp.constants.classes.VSCP_CLASS1_CONTROL,
+                    vscpType:       vscp.constants.types.VSCP_TYPE_CONTROL_TURNON,
+                    vscpPriority:   vscp.constants.priorities.PRIORITY_3_NORMAL,
+                    vscpData:       [ data1, data2, data3 ]
+                }),
+
+                onSuccess: function( conn ) {
+                    console.info( "TURNON event sent." );
+                    ui.enable();
+                },
+
+                onError: function( conn ) {
+                    alert( "Failed to send TURNON event." );
+                    ui.enable();
+                }
+
+            });
+
+        }
+
+        function vscpTurnOffEvent(data1, data2, data3) {
+
+            ui.disable();
+
+            vscpConn.sendEvent({
+                event: new vscp.Event({
+                    vscpClass:      vscp.constants.classes.VSCP_CLASS1_CONTROL,
+                    vscpType:       vscp.constants.types.VSCP_TYPE_CONTROL_TURNOFF,
+                    vscpPriority:   vscp.constants.priorities.PRIORITY_3_NORMAL,
+                    vscpData:       [ data1, data2, data3 ]
+                }),
+
+                onSuccess: function( conn ) {
+                    console.info( "TURNOFF event sent." );
+                    ui.enable();
+                },
+
+                onError: function( conn ) {
+                    alert( "Failed to send TURNOFF event." );
+                    ui.enable();
+                }
+
+            });
+
+        }
+
+
+
+
+
+//        })();
+
+
+    
+</script>
+
+<div id="header" class="hero-unit">
+  <h1>{{'Ventilation management' | trans }}</h1>
+
+</div>
+
+{% set buttonTop = 0 %}
+
+{% for ventilationswitch in ventilationswitches %}
+
+  <p>
+    {{ ventilationswitch.zonename | trans }}
+    -
+    {{ ventilationswitch.subzonename | trans }}
+
+    <button onclick="vscpTurnOnEvent(0, {{ ventilationswitch.zoneid }}, {{ ventilationswitch.subzoneid }})">ON </button>
+         
+    <button onclick="vscpTurnOffEvent(0, {{ ventilationswitch.zoneid }}, {{ ventilationswitch.subzoneid }})">OFF</button>
+  </p>
+
+<div style="position:absolute; top:{{(buttonTop / 4 + 1) * 140}}px; left:35%; z-index:1">
+
+<script>
+
+            function initCanvas() {
+
+
+                // Show background image
+//                var backgroundImage = new vscp.widget.Image({
+//                    canvasName: "#myCanvas",
+//                    url: "{{ asset('bundles/lljmhome/images/kvarnvillan_plan1_800.jpg') }}"
+//                });
+
+                // Create ventilation buttonn
+                button{{ buttonTop }} = new vscp.widget.Button({
+                    connection: vscpConn,       // VSCP connection object
+                    canvasName: "#buttonVentilation{{ buttonTop }}",    // Canvas id
+                    type: 85,                    // Button type
+                    scale: 0.3,                 // Scale factor
+                    x: 15,                     // x position in the canvas
+                    y: 15,                     // y position in the canvas
+                    transmitZone: {{ ventilationswitch.zoneid }},            // Zone where button event will be sent to
+                    transmitSubZone: {{ ventilationswitch.subzoneid }},        // Sub-zone where button event will be sent to
+                    receiveZone: {{ ventilationswitch.zoneid }},             // Zone where state events will come from
+                    receiveSubZone: {{ ventilationswitch.subzoneid }},         // Sub-zone where state events will come from
+                    bindToRemoteState: true,    // Button state depends on remote state
+                    enable: true               // Disable button by default
+                });
+
+                // The user interface (buttons) make only sense
+                // in case that the event communication is ready
+                button{{ buttonTop }}.setEnabled( true );
+
+            };
+
+</script>
+        <canvas id="buttonVentilation{{ buttonTop }}" width="50px" height="50px">
+            Your browser does not support HTML5 Canvas.
+        </canvas>
+</div>
+
+{% set buttonTop = buttonTop + 1 %}
+
+{% else %}
+    <p>{{ 'No record in this table' | trans }}.</p>
+{% endfor %}
+
+
+
+          {% endblock %}

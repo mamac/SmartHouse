@@ -1,0 +1,192 @@
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+   {% block body %}
+
+<script type="text/javascript" >
+
+            var vscpConn = null;
+
+            // Create a VSCP websocket
+            vscpConn = new vscp.Connection();
+
+            // Connect to VSCP server
+            vscpConn.connect({
+
+                url: settings.url,
+                userName: settings.user,
+                password: settings.password,
+                vscpkey: settings.vscpkey,
+                authdomain: settings.authdomain,
+
+                onSuccess: function( conn ) {
+
+                    // Start receiving VSCP events
+                        // Initialize canvas
+                        // Don't do this without a established connection, because
+                        // the button needs the connection object!
+
+                        initCanvas();
+                    vscpConn.start({
+
+
+                        onError: function( conn ) {
+                            alert("Couldn't start receiving events.");
+                        }
+
+                    });
+
+                },
+
+                onError: function( conn ) {
+                    alert("Couldn't establish a connection.");
+                },
+
+            });
+
+
+        // User interface data
+        var ui = {
+
+            enable: function() {
+                $( "#ui :input" ).attr( "disabled", false );
+            },
+
+            disable: function() {
+                $( "#ui :input" ).attr( "disabled", true );
+            }
+        };
+
+        function vscpTurnOnEvent(data1, data2, data3) {
+
+            ui.disable();
+
+            vscpConn.sendEvent({
+                event: new vscp.Event({
+                    vscpClass:      vscp.constants.classes.VSCP_CLASS1_CONTROL,
+                    vscpType:       vscp.constants.types.VSCP_TYPE_CONTROL_TURNON,
+                    vscpPriority:   vscp.constants.priorities.PRIORITY_3_NORMAL,
+                    vscpData:       [ data1, data2, data3 ]
+                }),
+
+                onSuccess: function( conn ) {
+                    console.info( "TURNON event sent." );
+                    ui.enable();
+                },
+
+                onError: function( conn ) {
+                    alert( "Failed to send TURNON event." );
+                    ui.enable();
+                }
+
+            });
+
+        }
+
+        function vscpTurnOffEvent(data1, data2, data3) {
+
+            ui.disable();
+
+            vscpConn.sendEvent({
+                event: new vscp.Event({
+                    vscpClass:      vscp.constants.classes.VSCP_CLASS1_CONTROL,
+                    vscpType:       vscp.constants.types.VSCP_TYPE_CONTROL_TURNOFF,
+                    vscpPriority:   vscp.constants.priorities.PRIORITY_3_NORMAL,
+                    vscpData:       [ data1, data2, data3 ]
+                }),
+
+                onSuccess: function( conn ) {
+                    console.info( "TURNOFF event sent." );
+                    ui.enable();
+                },
+
+                onError: function( conn ) {
+                    alert( "Failed to send TURNOFF event." );
+                    ui.enable();
+                }
+
+            });
+
+        }
+
+</script>
+
+<div id="header" class="hero-unit">
+  <h1>{{'Light management' | trans }}</h1>
+
+</div>
+
+{% set buttonTop = 0 %}
+
+<style type="text/css">
+table{
+    width: 20%;
+    border: 1px solid black;
+}
+th, td{
+    padding: 10px;
+    text-align: left;
+    border: 1px solid black;
+}
+</style>
+
+<table>
+{% for lightswitch in lightswitches %}
+
+
+  <tr>
+    <td>{{ lightswitch.zonename | trans }}</td>
+    <td>{{ lightswitch.subzonename | trans }}</td>
+    <td><button onclick="vscpTurnOnEvent(0, {{ lightswitch.zoneid }}, {{ lightswitch.subzoneid }})">ON </button></td>
+    <td><button onclick="vscpTurnOffEvent(0, {{ lightswitch.zoneid }}, {{ lightswitch.subzoneid }})">OFF</button></td>
+    <td>
+
+        <canvas id="buttonVentilation{{ buttonTop }}" width="50px" height="50px">
+            Your browser does not support HTML5 Canvas.
+        </canvas>
+
+        <script>
+
+            function initCanvas() {
+
+
+                // Show background image
+//                var backgroundImage = new vscp.widget.Image({
+//                    canvasName: "#myCanvas",
+//                    url: "{{ asset('bundles/lljmhome/images/kvarnvillan_plan1_800.jpg') }}"
+//                });
+
+                // Create ventilation buttonn
+                button{{ buttonTop }} = new vscp.widget.Button({
+                    connection: vscpConn,       // VSCP connection object
+                    canvasName: "#buttonVentilation{{ buttonTop }}",    // Canvas id
+                    type: 85,                    // Button type
+                    scale: 0.3,                 // Scale factor
+                    x: 25,                     // x position in the canvas
+                    y: 25,                     // y position in the canvas
+                    transmitZone: {{ lightswitch.zoneid }},            // Zone where button event will be sent to
+                    transmitSubZone: {{ lightswitch.subzoneid }},        // Sub-zone where button event will be sent to
+                    receiveZone: {{ lightswitch.zoneid }},             // Zone where state events will come from
+                    receiveSubZone: {{ lightswitch.subzoneid }},         // Sub-zone where state events will come from
+                    bindToRemoteState: true,    // Button state depends on remote state
+                    enable: false               // Disable button by default
+                });
+
+                // The user interface (buttons) make only sense
+                // in case that the event communication is ready
+                button{{ buttonTop }}.setEnabled( true );
+
+            };
+                                    initCanvas();
+
+</script>
+    </td>
+  </tr>
+
+{% set buttonTop = buttonTop + 1 %}
+
+{% else %}
+    <p>{{ 'No record in this table' | trans }}.</p>
+{% endfor %}
+</table>
+
+          {% endblock %}

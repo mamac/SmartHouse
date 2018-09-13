@@ -1,0 +1,30 @@
+<div>
+<form action="{{ path('health_heightadd') }}" method="post" {{ form_enctype(form) }}>
+
+{{ form_errors(form) }}
+
+<div class="input-group">
+	<div class="form-group">
+	  {{ form_label(form.user, "User") }}
+	  {{ form_errors(form.user) }}
+	  {{ form_widget(form.user) }}
+	</div>
+	<div class="form-group">
+	  {{ form_label(form.heightValue, "Height") }}
+	  {{ form_errors(form.heightValue) }}
+	  {{ form_widget(form.heightValue) }}
+	</div>
+	<div class="form-group">
+	  {{ form_label(form.dateRead, "Date") }}
+	  {{ form_errors(form.dateRead) }}
+	  {{ form_widget(form.dateRead) }}
+	</div>
+	{{ form_rest(form) }}
+
+	<div>
+	  <input type="submit" class="btn btn-primary" />
+	</div>
+</div>
+
+</form>
+</div>

@@ -1,0 +1,126 @@
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+{% block title %}
+  Gas visualization - {{ parent() }}
+{% endblock %}
+
+{% block lljm_home_body %}
+
+  <h2>{{ 'Gas visualization' | trans }}</h2>
+
+<div class="btn-group" role="group" aria-label="...">
+
+  <button type="button" class="btn btn-default active">{{ 'Day detail' | trans }}</button>
+  <button type="button" class="btn btn-default" onclick="location.href = '{{ path('home_gasvisual_daily') }}'">{{ 'Day' | trans }}</button>
+  <button type="button" class="btn btn-default" onclick="location.href = '{{ path('home_gasvisual_weekly') }}'">{{ 'Week' | trans }}</button>
+  <button type="button" class="btn btn-default" onclick="location.href = '{{ path('home_gasvisual_monthly') }}'">{{ 'Month' | trans }}</button>
+</div>
+
+<br>
+<br>
+
+<script type="text/javascript">
+
+    function display() {
+
+      dst = "{{ path(app.request.attributes.get('_route')) }}" + '/';
+      dst += document.getElementById("day").value + ',';
+      dst += document.getElementById("meterid").value;
+      
+      location.href = dst;
+  
+    }
+
+</script>
+
+<div>
+
+<form class="form-inline" role="form" onsubmit="return false;">
+
+<input type="text" id="day" class="form-control datepicker" value="{{ day }}" placeholder="{{ 'day' | trans}}">
+
+<select id="meterid" class="form-control">
+  {% for meterlist in meterlist %}
+
+  <option value="{{ meterlist.id }}" {% if meterid == meterlist.id %} selected {% endif %} >{{ meterlist.metername | trans }}</option>
+
+  {% endfor %}
+</select>
+
+<button type="submit" class = "btn btn-default" onclick="return display()">{{ "Search" | trans }}</button>
+
+</form>
+
+<br>
+
+<div>
+  <a class="btn btn-default btn-sm glyphicon glyphicon-plus" href="{{ path('home_gaslogadd') }}">
+    {{ 'Add' | trans }}
+  </a>
+
+
+</div>
+
+<br>
+
+<div id="barChart" class="epoch" style="height: 250px"></div>
+
+<script>
+(function() {
+
+var barChartData = [
+  { label: "Series 1",
+   values: [
+  {% for gaslogdaydetail in gaslogdaydetails %}
+     {x: {{ gaslogdaydetail.daterx | date("U")}}, y: {{ gaslogdaydetail.consumption }}},
+  {% endfor %}
+   ]
+  }
+];
+
+  $('#barChart').epoch({
+     type: 'bar',
+     data: barChartData,
+     axes: ['left', 'bottom'],
+     ticks: { left: 5, bottom: 6 },
+     tickFormats: { bottom:
+       function(d) {
+         var date = new Date(d*1000);
+
+         var date_hour   = date.getHours();
+         var date_minute = date.getMinutes();
+
+         return date_hour + ':' + date_minute;
+       }
+     }
+  });
+})();
+
+</script>
+    <div class="table-responsive">
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>{{ 'Received date' | trans }}</th>
+            <th>{{ 'Meter value' | trans }}</th>
+            <th>{{ 'Consumption' | trans }}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+  {% for gaslogdaydetail in gaslogdaydetails %}
+          <tr>
+            <td>{{ gaslogdaydetail.daterx | date("Y-m-d H:i:s")}}</td>
+            <td>{{ gaslogdaydetail.metervalue }}</td>
+            <td>{{ gaslogdaydetail.consumption }}</td>
+          </tr>
+  {% else %}
+    <p>{{ 'No record in this table' | trans }}.</p>
+  {% endfor %}
+        </tbody>
+      </table>
+    </div>
+</div>
+
+{% endblock %}

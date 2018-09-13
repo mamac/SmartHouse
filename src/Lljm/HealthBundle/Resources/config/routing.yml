@@ -1,0 +1,15 @@
+health_weight:
+    path:     /weight/{datefrom},{dateto},{user}
+    defaults: { _controller: LljmHealthBundle:Weight:index, datefrom: "", dateto: "", user: "" }
+
+health_weightadd:
+    path:     /weightadd
+    defaults: { _controller: LljmHealthBundle:Weight:weightadd }
+
+health_height:
+    path:     /height/{datefrom},{dateto},{user}
+    defaults: { _controller: LljmHealthBundle:Height:index, datefrom: "", dateto: "", user: "" }
+
+health_heightadd:
+    path:     /heightadd
+    defaults: { _controller: LljmHealthBundle:Height:heightadd }

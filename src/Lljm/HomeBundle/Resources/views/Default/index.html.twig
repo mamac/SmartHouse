@@ -1,0 +1,18 @@
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+         {% block body %}
+      <div id="header" class="hero-unit">
+        <h1>{{'Welcome' | trans }}</h1>
+
+{% if houses is empty %}
+
+{{ 'You should create a house in Housing/House.' | trans }}
+
+{% else %}
+
+{{ houses.0.address1 }} - {{ houses.0.city }} - {{ houses.0.country }}
+
+{% endif %}
+
+      </div>
+          {% endblock %}

@@ -1,0 +1,45 @@
+<?php
+
+namespace Lljm\HealthBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Height
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Lljm\HealthBundle\Entity\HeightRepository")
+ */
+class Height
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="height_value", type="decimal")
+     */
+    private $heightValue;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Lljm\UserBundle\Entity\User", cascade={"persist"})
+    */
+    private $user;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_read", type="date")
+     */
+    private $dateRead;
+
+
+
+}

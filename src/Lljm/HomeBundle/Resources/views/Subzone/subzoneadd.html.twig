@@ -1,0 +1,16 @@
+
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+
+{% block title %}
+  Sub zones - {{ parent() }}
+{% endblock %}
+
+{% block lljm_home_body %}
+
+  <h2>{{ 'Add a sub zone' | trans }}</h2>
+<ul>
+  {% include "LljmHomeBundle:Subzone:subzoneform.html.twig" %}
+</ul>
+{% endblock %}
+

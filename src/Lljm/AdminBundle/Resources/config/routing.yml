@@ -1,0 +1,15 @@
+admin_user:
+    path:     /admin_user
+    defaults: { _controller: LljmAdminBundle:User:index }
+
+admin_useradd:
+    path:     /admin_useradd
+    defaults: { _controller: LljmAdminBundle:User:adduser }
+
+admin_userdel:
+    path:     /admin_userdel/{username}
+    defaults: { _controller: LljmAdminBundle:User:deluser }
+
+admin_useredit:
+    path:     /admin_useredit/{username}
+    defaults: { _controller: LljmAdminBundle:User:edituser }

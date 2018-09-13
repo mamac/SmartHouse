@@ -1,0 +1,16 @@
+
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+
+{% block title %}
+  Meters - {{ parent() }}
+{% endblock %}
+
+{% block lljm_home_body %}
+
+  <h2>{{ 'Add a meter' | trans }}</h2>
+<ul>
+  {% include "LljmHomeBundle:Meter:meterform.html.twig" %}
+</ul>
+{% endblock %}
+

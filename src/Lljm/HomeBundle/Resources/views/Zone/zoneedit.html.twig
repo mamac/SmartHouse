@@ -1,0 +1,16 @@
+
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+
+{% block title %}
+  Zone update - {{ parent() }}
+{% endblock %}
+
+{% block lljm_home_body %}
+
+  <h2>{{ 'Update zone' | trans }}</h2>
+<ul>
+  {% include "LljmHomeBundle:Zone:zoneeditform.html.twig" %}
+</ul>
+{% endblock %}
+

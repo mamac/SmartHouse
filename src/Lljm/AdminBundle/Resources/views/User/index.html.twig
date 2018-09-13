@@ -1,0 +1,50 @@
+{% extends "LljmAdminBundle::layout.html.twig" %}
+
+{% block body %}
+
+  <h2>{{ 'Users profiles administration' | trans }}</h2>
+
+        <div>
+          <a class="btn btn-default btn-sm glyphicon glyphicon-plus" href="{{ path('admin_useradd') }}">
+            {{ 'Add' | trans }}
+          </a>
+        </div>
+
+        <div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>{{ 'ID' | trans }}</th>
+                  <th>{{ 'User name' | trans }}</th>
+                  <th>{{ 'Email' | trans }}</th>
+                  <th>{{ 'Last login' | trans }}</th>
+                  <th>{{ 'Enabled' | trans }}</th>
+                  <th>{{ 'Roles' | trans }}</th>
+                  <th>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+			  {% for user in users %}
+                <tr>
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.username }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.lastLogin | date}}</td>
+                  <td>{{ user.enabled }}</td>
+                  <td>{{ user.roles.0 }}</td>
+                  <td>
+                    <a class="btn glyphicon glyphicon-pencil red" href="{{ path('admin_useredit', {'username': user.username}) }}">
+                    <a class="btn glyphicon glyphicon-trash red " href="{{ path('admin_userdel', {'username': user.username}) }}">
+
+                  </td>
+                </tr>
+			  {% else %}
+			    <p>{{ 'No record in this table' | trans }}.</p>
+			  {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      </div>
+
+{% endblock %}

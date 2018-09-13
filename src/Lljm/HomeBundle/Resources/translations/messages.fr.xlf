@@ -1,0 +1,427 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Welcome to LLJM.NET</source>
+                <target>Bienvenue sur LLJM.NET</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Temperature log</source>
+                <target>Journal temperature</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Housing</source>
+                <target>Logement</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>About</source>
+                <target>A propos</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Nodes</source>
+                <target>Noeuds</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Update zone</source>
+                <target>Modifier une zone</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Outside</source>
+                <target>Exterieur</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Children bedroom</source>
+                <target>Chambre a coucher enfant</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Office</source>
+                <target>Bureau</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Living room</source>
+                <target>Salon</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Bathroom</source>
+                <target>Salle de bain</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Zone name</source>
+                <target>Nom de la zone</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>About this web site</source>
+                <target>A propos de ce site</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>This is a private web site used to share a few information with the internet.</source>
+                <target>Ceci est un site personnel qui a pour but de publier quelques information sur Internet.</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>If you feel any interest in what you saw here don't hesitate to contact us.</source>
+                <target>N'hesitez pas a nous contacter si ce site presente un interet pour vous.</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Add</source>
+                <target>Ajouter</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>Visualization</source>
+                <target>Visualisation</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>Temperature visualization</source>
+                <target>Visualisation de la temperature</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>Node</source>
+                <target>Noeud</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>Received date</source>
+                <target>Date rec.</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>Value</source>
+                <target>Valeur</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>Language</source>
+                <target>Langage</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>English</source>
+                <target>Anglais</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>French</source>
+                <target>Francais</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>Settings</source>
+                <target>Parametres</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>Meters</source>
+                <target>Compteurs</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>Logout</source>
+                <target>Deconnexion</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>Login</source>
+                <target>Connexion</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>Kitchen</source>
+                <target>Cuisine</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>Cellar</source>
+                <target>Cellier</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>Child's room</source>
+                <target>Chambre d'enfant</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>Dinnign room</source>
+                <target>Salle a manger</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>Entrance lobby</source>
+                <target>Entree</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>Parent's room</source>
+                <target>Chambre des parents</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>Shower room</source>
+                <target>Salle d'eau</target>
+            </trans-unit>
+            <trans-unit id="36">
+                <source>Day detail</source>
+                <target>Detail jour</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>Day</source>
+                <target>Jour</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>Week</source>
+                <target>Semaine</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source>Month</source>
+                <target>Mois</target>
+            </trans-unit>
+            <trans-unit id="40">
+                <source>Electricity</source>
+                <target>Electricite</target>
+            </trans-unit>
+            <trans-unit id="41">
+                <source>Water</source>
+                <target>Eau</target>
+            </trans-unit>
+            <trans-unit id="42">
+                <source>Gas</source>
+                <target>Gaz</target>
+            </trans-unit>
+            <trans-unit id="43">
+                <source>Electricity visualization</source>
+                <target>Visualisation de l'electricite</target>
+            </trans-unit>
+            <trans-unit id="44">
+                <source>Global meter</source>
+                <target>Compteur general</target>
+            </trans-unit>
+            <trans-unit id="45">
+                <source>Water visualization</source>
+                <target>Visualisation de l'eau</target>
+            </trans-unit>
+            <trans-unit id="46">
+                <source>Gas visualization</source>
+                <target>Visualisation du gaz</target>
+            </trans-unit>
+            <trans-unit id="47">
+                <source>Dining room</source>
+                <target>Salle a manger</target>
+            </trans-unit>
+            <trans-unit id="48">
+                <source>Temperature sensor</source>
+                <target>Capteur de temperature</target>
+            </trans-unit>
+            <trans-unit id="49">
+                <source>Name</source>
+                <target>Nom</target>
+            </trans-unit>
+            <trans-unit id="50">
+                <source>Resource</source>
+                <target>Ressource</target>
+            </trans-unit>
+            <trans-unit id="51">
+                <source>Unit</source>
+                <target>Unite</target>
+            </trans-unit>
+            <trans-unit id="52">
+                <source>Liter</source>
+                <target>Litre</target>
+            </trans-unit>
+            <trans-unit id="53">
+                <source>date from</source>
+                <target>date debut</target>
+            </trans-unit>
+            <trans-unit id="54">
+                <source>date to</source>
+                <target>date fin</target>
+            </trans-unit>
+            <trans-unit id="55">
+                <source>day</source>
+                <target>jour</target>
+            </trans-unit>
+            <trans-unit id="56">
+                <source>Meter value</source>
+                <target>Index</target>
+            </trans-unit>
+            <trans-unit id="57">
+                <source>Consumption</source>
+                <target>Consommation</target>
+            </trans-unit>
+            <trans-unit id="58">
+                <source>Year-week</source>
+                <target>Annee-semaine</target>
+            </trans-unit>
+            <trans-unit id="59">
+                <source>Year-month</source>
+                <target>Annee-mois</target>
+            </trans-unit>
+            <trans-unit id="60">
+                <source>Light switch</source>
+                <target>Interrupteur lumiere</target>
+            </trans-unit>
+            <trans-unit id="61">
+                <source>Light</source>
+                <target>Eclairage</target>
+            </trans-unit>
+            <trans-unit id="62">
+                <source>Light management</source>
+                <target>Gestion de l'eclairage</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>Sub zones</source>
+                <target>Sous zones</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>Ceiling</source>
+                <target>Plafonnier</target>
+            </trans-unit>
+            <trans-unit id="65">
+                <source>Humidity</source>
+                <target>Humidite</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>Humidity visualization</source>
+                <target>Visualisation de l'humidite</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>Heating</source>
+                <target>Chauffage</target>
+            </trans-unit>
+            <trans-unit id="68">
+                <source>Current</source>
+                <target>Courante</target>
+            </trans-unit>
+            <trans-unit id="69">
+                <source>No frost</source>
+                <target>Hors gel</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>Program</source>
+                <target>Programme</target>
+            </trans-unit>
+            <trans-unit id="71">
+                <source>Monday</source>
+                <target>Lundi</target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>Tuesday</source>
+                <target>Mardi</target>
+            </trans-unit>
+            <trans-unit id="73">
+                <source>Wednesday</source>
+                <target>Mercredi</target>
+            </trans-unit>
+            <trans-unit id="74">
+                <source>Thursday</source>
+                <target>Jeudi</target>
+            </trans-unit>
+            <trans-unit id="75">
+                <source>Friday</source>
+                <target>Vendredi</target>
+            </trans-unit>
+            <trans-unit id="76">
+                <source>Saturday</source>
+                <target>Samedi</target>
+            </trans-unit>
+            <trans-unit id="77">
+                <source>Sunday</source>
+                <target>Dimanche</target>
+            </trans-unit>
+            <trans-unit id="78">
+                <source>Update heating zone settings</source>
+                <target>Parametres de chauffage d'une zone</target>
+            </trans-unit>
+            <trans-unit id="79">
+                <source>Outside temperature</source>
+                <target>Temperature exterieur</target>
+            </trans-unit>
+            <trans-unit id="80">
+                <source>Welcome</source>
+                <target>Bienvenue</target>
+            </trans-unit>
+            <trans-unit id="81">
+                <source>Loft</source>
+                <target>Grenier</target>
+            </trans-unit>
+            <trans-unit id="82">
+                <source>Ventilation switch</source>
+                <target>Interrupteur ventilation</target>
+            </trans-unit>
+            <trans-unit id="83">
+                <source>Ventilation management</source>
+                <target>Gestion de la ventilation</target>
+            </trans-unit>
+            <trans-unit id="84">
+                <source>House</source>
+                <target>Maison</target>
+            </trans-unit>
+            <trans-unit id="85">
+                <source>Address 1</source>
+                <target>Adresse 1</target>
+            </trans-unit>
+            <trans-unit id="86">
+                <source>Address 2</source>
+                <target>Adresse 2</target>
+            </trans-unit>
+            <trans-unit id="87">
+                <source>Postal code</source>
+                <target>Code postal</target>
+            </trans-unit>
+            <trans-unit id="88">
+                <source>City</source>
+                <target>Ville</target>
+            </trans-unit>
+            <trans-unit id="89">
+                <source>Country</source>
+                <target>Pays</target>
+            </trans-unit>
+            <trans-unit id="90">
+                <source>Delete a house</source>
+                <target>Supprimer une maison</target>
+            </trans-unit>
+            <trans-unit id="91">
+                <source>Confirm you want to delete house</source>
+                <target>Confirmer la suppression de la maison</target>
+            </trans-unit>
+            <trans-unit id="92">
+                <source>You should create a house in Housing/House.</source>
+                <target>Vous devriez creer une maison dans Logement/Maison.</target>
+            </trans-unit>
+            <trans-unit id="93">
+                <source>Heated zone</source>
+                <target>Zone chaufee</target>
+            </trans-unit>
+            <trans-unit id="94">
+                <source>Yes</source>
+                <target>Oui</target>
+            </trans-unit>
+            <trans-unit id="95">
+                <source>Heating status</source>
+                <target>Statut chauffage</target>
+            </trans-unit>
+            <trans-unit id="96">
+                <source>Boiler status</source>
+                <target>Statut chaudiere</target>
+            </trans-unit>
+            <trans-unit id="97">
+                <source>Schedule</source>
+                <target>Calendrier</target>
+            </trans-unit>
+            <trans-unit id="98">
+                <source>Action</source>
+                <target>Action</target>
+            </trans-unit>
+            <trans-unit id="99">
+                <source>Ventilation</source>
+                <target>Ventilation</target>
+            </trans-unit>
+            <trans-unit id="100">
+                <source>Admin</source>
+                <target>Admin</target>
+            </trans-unit>
+            <trans-unit id="101">
+                <source>Search</source>
+                <target>Recherche</target>
+            </trans-unit>
+            <trans-unit id="102">
+                <source>No record in this table</source>
+                <target>Pas d'enregistrement dans cette table</target>
+            </trans-unit>
+            <trans-unit id="103">
+                <source>Heating log is empty</source>
+                <target>Le journal est vide</target>
+            </trans-unit>
+            <trans-unit id="104">
+                <source>Boiler status not available</source>
+                <target>Statut chaudiere non disponible</target>
+            </trans-unit>
+            <trans-unit id="105">
+                <source>Monthly electricity consumption</source>
+                <target>Consomation electrique mensuelle</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

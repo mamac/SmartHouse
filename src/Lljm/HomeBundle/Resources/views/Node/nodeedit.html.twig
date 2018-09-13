@@ -1,0 +1,16 @@
+
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+
+{% block title %}
+  Node update - {{ parent() }}
+{% endblock %}
+
+{% block lljm_home_body %}
+
+  <h2>{{ 'Update a node' | trans }}</h2>
+<ul>
+  {% include "LljmHomeBundle:Node:nodeeditform.html.twig" %}
+</ul>
+{% endblock %}
+

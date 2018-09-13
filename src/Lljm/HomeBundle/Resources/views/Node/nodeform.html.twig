@@ -1,0 +1,35 @@
+<div>
+<form action="{{ path('home_nodeadd') }}" method="post">
+
+{{ form_errors(form) }}
+
+<div class="input-group">
+	<div class="form-group">
+	  {{ form_label(form.nodeguid, "Node GUID") }}
+	  {{ form_errors(form.nodeguid) }}
+	  {{ form_widget(form.nodeguid) }}
+	</div>
+	<div class="form-group">
+	  {{ form_label(form.nodezone, "Zone") }}
+	  {{ form_errors(form.nodezone) }}
+	  {{ form_widget(form.nodezone) }}
+	</div>
+	<div class="form-group">
+	  {{ form_label(form.nodesubzone, "Sub zone") }}
+	  {{ form_errors(form.nodesubzone) }}
+	  {{ form_widget(form.nodesubzone) }}
+	</div>
+	<div class="form-group">
+	  {{ form_label(form.nodetype, "Type") }}
+	  {{ form_errors(form.nodetype) }}
+	  {{ form_widget(form.nodetype) }}
+	</div>
+	{{ form_rest(form) }}
+
+	<div>
+	  <input type="submit" class="btn btn-primary" />
+	</div>
+</div>
+
+</form>
+</div>

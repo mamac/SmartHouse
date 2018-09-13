@@ -1,0 +1,155 @@
+lljm_home_homepage:
+    path:     /
+    defaults: { _controller: LljmHomeBundle:Default:index }
+
+home_about:
+    path:     /about
+    defaults: { _controller: LljmHomeBundle:About:index }
+
+home_house:
+    path:     /house
+    defaults: { _controller: LljmHomeBundle:House:house }
+
+home_houseadd:
+    path:     /houseadd
+    defaults: { _controller: LljmHomeBundle:House:houseadd }
+
+home_houseedit:
+    path:     /houseedit/{id}
+    defaults: { _controller: LljmHomeBundle:House:houseedit }
+
+home_housedel:
+    path:     /housedel/{id}
+    defaults: { _controller: LljmHomeBundle:House:housedel }
+
+home_zone:
+    path:     /zone
+    defaults: { _controller: LljmHomeBundle:Zone:zone }
+
+home_zoneadd:
+    path:     /zoneadd
+    defaults: { _controller: LljmHomeBundle:Zone:zoneadd }
+
+home_zoneedit:
+    path:     /zoneedit/{id}
+    defaults: { _controller: LljmHomeBundle:Zone:zoneedit }
+
+home_zonedel:
+    path:     /zonedel/{id}
+    defaults: { _controller: LljmHomeBundle:Zone:zonedel }
+
+home_subzone:
+    path:     /subzone
+    defaults: { _controller: LljmHomeBundle:Subzone:subzone }
+
+home_subzoneadd:
+    path:     /subzoneadd
+    defaults: { _controller: LljmHomeBundle:Subzone:subzoneadd }
+
+home_subzoneedit:
+    path:     /subzoneedit/{id}
+    defaults: { _controller: LljmHomeBundle:Subzone:subzoneedit }
+
+home_subzonedel:
+    path:     /subzonedel/{id}
+    defaults: { _controller: LljmHomeBundle:Subzone:subzonedel }
+
+home_node:
+    path:     /node
+    defaults: { _controller: LljmHomeBundle:Node:node }
+
+home_nodeadd:
+    path:     /nodeadd
+    defaults: { _controller: LljmHomeBundle:Node:nodeadd }
+
+home_nodeedit:
+    path:     /nodeedit/{id}
+    defaults: { _controller: LljmHomeBundle:Node:nodeedit }
+
+home_nodedel:
+    path:     /nodedel/{id}
+    defaults: { _controller: LljmHomeBundle:Node:nodedel }
+
+home_tempvisual:
+    path:     /tempvisual/{daterx}
+    defaults: { _controller: LljmHomeBundle:Tempvisual:index, daterx: "" }
+
+home_humidvisual:
+    path:     /humidvisual/{daterx}
+    defaults: { _controller: LljmHomeBundle:Humidvisual:index, daterx: "" }
+
+home_elecvisual:
+    path:     /elecvisual
+    defaults: { _controller: LljmHomeBundle:Elecvisual:yearoverview }
+
+home_eleclogdel:
+    path:     /eleclogdel/{id}
+    defaults: { _controller: LljmHomeBundle:Elecvisual:logdel }
+
+home_eleclogadd:
+    path:     /eleclogadd
+    defaults: { _controller: LljmHomeBundle:Elecvisual:logadd }
+
+home_watervisual:
+    path:     /watervisual
+    defaults: { _controller: LljmHomeBundle:Watervisual:yearoverview }
+
+home_waterlogdel:
+    path:     /waterlogdel/{id}
+    defaults: { _controller: LljmHomeBundle:Watervisual:logdel }
+
+home_waterlogadd:
+    path:     /waterlogadd
+    defaults: { _controller: LljmHomeBundle:Watervisual:logadd }
+
+home_gasvisual:
+    path:     /gasvisual
+    defaults: { _controller: LljmHomeBundle:Gasvisual:yearoverview }
+
+home_gaslogdel:
+    path:     /gaslogdel/{id}
+    defaults: { _controller: LljmHomeBundle:Gasvisual:logdel }
+
+home_gaslogadd:
+    path:     /gaslogadd
+    defaults: { _controller: LljmHomeBundle:Gasvisual:logadd }
+
+home_meter:
+    path:     /meter
+    defaults: { _controller: LljmHomeBundle:Meter:meter }
+
+home_meteradd:
+    path:     /meteradd
+    defaults: { _controller: LljmHomeBundle:Meter:meteradd }
+
+home_meteredit:
+    path:     /meteredit/{id}
+    defaults: { _controller: LljmHomeBundle:Meter:meteredit }
+
+home_meterdel:
+    path:     /meterdel/{id}
+    defaults: { _controller: LljmHomeBundle:Meter:meterdel }
+
+home_action_light:
+    path:     /action_light
+    defaults: { _controller: LljmHomeBundle:Light:index }
+
+home_action_heating:
+    path:     /action_heating
+    defaults: { _controller: LljmHomeBundle:Heating:index }
+
+home_action_heatingedit:
+    path:     /action_heatingedit/{id}
+    defaults: { _controller: LljmHomeBundle:Heating:edit }
+
+home_zoneheatingmodeupdate:
+    path:     /zoneheatingmodeupdate/{heatingmode}
+    defaults: { _controller: LljmHomeBundle:Heating:allzoneupdate, heatingmode:"" }
+
+home_action_ventilation:
+    path:     /action_ventilation
+    defaults: { _controller: LljmHomeBundle:Ventilation:index }
+
+home_onezoneheatingmodeupdate:
+    path:     /onezoneheatingmodeupdate/{heatingmode}/{id}
+    defaults: { _controller: LljmHomeBundle:Heating:onezoneupdate, heatingmode:"", zoneid:"" }

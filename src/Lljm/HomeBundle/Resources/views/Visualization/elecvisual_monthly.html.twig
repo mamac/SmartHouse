@@ -1,0 +1,107 @@
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+{% block title %}
+  Electricity visualization - {{ parent() }}
+{% endblock %}
+
+{% block lljm_home_body %}
+
+  <h2>{{ 'Electricity visualization' | trans }}</h2>
+
+<div class="btn-group" role="group" aria-label="...">
+
+  <button type="button" class="btn btn-default" onclick="location.href = '{{ path('home_elecvisual_day_detail') }}'">{{ 'Day detail' | trans }}</button>
+  <button type="button" class="btn btn-default" onclick="location.href = '{{ path('home_elecvisual_daily') }}'">{{ 'Day' | trans }}</button>
+  <button type="button" class="btn btn-default" onclick="location.href = '{{ path('home_elecvisual_weekly') }}'">{{ 'Week' | trans }}</button>
+  <button type="button" class="btn btn-default active">{{ 'Month' | trans }}</button>
+</div>
+
+<br>
+<br>
+<script type="text/javascript">
+
+    function display() {
+
+      dst = "{{ path(app.request.attributes.get('_route')) }}" + '/';
+      dst += document.getElementById("datefrom").value + ',';
+      dst += document.getElementById("dateto").value + ',';
+      dst += document.getElementById("meterid").value;
+      
+      location.href = dst;
+  
+    }
+
+</script>
+
+<div>
+
+<form class="form-inline" role="form" onsubmit="return false;">
+
+<input type="text" id="datefrom" class="form-control datepicker" value="{{ datefrom }}" placeholder="{{ 'date from' | trans}}">
+<input type="text" id="dateto" class="form-control datepicker" value="{{ dateto }}"  placeholder="{{ 'date to' | trans}}">
+
+<select id="meterid" class="form-control">
+  {% for meterlist in meterlist %}
+
+  <option value="{{ meterlist.id }}" {% if meterid == meterlist.id %} selected {% endif %} >{{ meterlist.metername | trans }}</option>
+
+  {% endfor %}
+</select>
+
+<button type="submit" class = "btn btn-default" onclick="return display()">{{ "Search" | trans }}</button>
+
+</form>
+
+<br>
+
+<br>
+
+<div id="barChart" class="epoch" style="height: 250px"></div>
+
+<script>
+(function() {
+
+var barChartData = [
+  { label: "Series 1",
+   values: [
+  {% for eleclogmonthly in eleclogmonthlys %}
+     {x: '{{ eleclogmonthly.yearmonth }}', y: {{ eleclogmonthly.consumption }}},
+  {% endfor %}
+   ]
+  }
+];
+
+  $('#barChart').epoch({
+     type: 'bar',
+     data: barChartData,
+     axes: ['left', 'bottom'],
+     ticks: { left: 5 }
+  });
+})();
+
+</script>
+
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>{{ 'Year-month' | trans }}</th>
+            <th>{{ 'Consumption' | trans }}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+  {% for eleclogmonthly in eleclogmonthlys %}
+          <tr>
+            <td>{{ eleclogmonthly.yearmonth }}</td>
+            <td>{{ eleclogmonthly.consumption }}</td>
+          </tr>
+  {% else %}
+    <p>{{ 'No record in this table' | trans }}.</p>
+  {% endfor %}
+        </tbody>
+      </table>
+    </div>
+</div>
+  
+{% endblock %}

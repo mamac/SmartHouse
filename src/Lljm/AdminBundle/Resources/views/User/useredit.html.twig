@@ -1,0 +1,16 @@
+
+{% extends "LljmAdminBundle::layout.html.twig" %}
+
+
+{% block title %}
+  User update - {{ parent() }}
+{% endblock %}
+
+{% block lljm_admin_body %}
+
+  <h2>{{ 'Update user' | trans }}</h2>
+<ul>
+  {% include "LljmAdminBundle:User:usereditform.html.twig" %}
+</ul>
+{% endblock %}
+
