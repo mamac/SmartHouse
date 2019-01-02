@@ -88,13 +88,14 @@
             </li>
             {% if is_granted('ROLE_USER') %}
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ 'Health' | trans }} <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ 'Tools' | trans }} <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="{{ path('health_weight') }}">{{ 'Weight' |trans }}</a></li>
-                <li><a href="{{ path('health_height') }}">{{ 'Height' | trans }}</a></li>
+                <li><a href="{{ path('geolocation_index') }}">{{ 'Geolocation' | trans }}</a></li>
+                <li><a href="{{ path('health_weight') }}">{{ 'Health - Weight' |trans }}</a></li>
+                <li><a href="{{ path('health_height') }}">{{ 'Health - Height' | trans }}</a></li>
+                <li><a href="{{ path('tasks') }}">{{ 'Tasks' | trans }}</a></li>
               </ul>
             </li>
-            <li><a href="{{ path('geolocation_index') }}">{{ 'Geolocation' | trans }}</a></li>
             {% endif %}
             {% if is_granted('ROLE_ADMIN') %}
             <li class="dropdown">

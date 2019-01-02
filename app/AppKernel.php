@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Lljm\HealthBundle\LljmHealthBundle(),
             new Lljm\AdminBundle\LljmAdminBundle(),
             new Lljm\GeolocationBundle\LljmGeolocationBundle(),
+            new Lljm\TasksBundle\LljmTasksBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
