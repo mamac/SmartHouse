@@ -1,0 +1,15 @@
+tasks:
+    path:     /tasks
+    defaults: { _controller: LljmTasksBundle:Default:index }
+
+tasks_taskadd:
+    path:     /taskadd
+    defaults: { _controller: LljmTasksBundle:Default:taskadd }
+
+tasks_taskdel:
+    path:     /taskdel/{id}
+    defaults: { _controller: LljmTasksBundle:Default:taskdel }
+
+tasks_taskedit:
+    path:     /taskedit/{id}
+    defaults: { _controller: LljmTasksBundle:Default:taskedit }

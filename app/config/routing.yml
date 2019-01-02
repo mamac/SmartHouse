@@ -1,3 +1,8 @@
+
+lljm_tasks:
+    resource: "@LljmTasksBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}
+
 lljm_geolocation:
     resource: "@LljmGeolocationBundle/Resources/config/routing.yml"
     prefix:   /{_locale}
