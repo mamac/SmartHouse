@@ -6,6 +6,6 @@
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 /build/
-#/vendor/
+/vendor/
 #/bin/
 /composer.phar
