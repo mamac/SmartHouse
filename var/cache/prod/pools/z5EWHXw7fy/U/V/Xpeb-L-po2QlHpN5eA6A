@@ -1,4 +1,0 @@
-<?php return array (
-  0 => 9223372036854775807,
-  1 => 'a:2:{i:0;O:30:"Doctrine\\ORM\\Mapping\\ManyToOne":4:{s:12:"targetEntity";s:28:"Lljm\\HomeBundle\\Entity\\Meter";s:7:"cascade";a:1:{i:0;s:7:"persist";}s:5:"fetch";s:4:"LAZY";s:10:"inversedBy";N;}i:1;O:48:"Symfony\\Component\\Validator\\Constraints\\NotBlank":3:{s:7:"message";s:31:"This value should not be blank.";s:7:"payload";N;s:6:"groups";a:1:{i:0;s:7:"Default";}}}',
-);

@@ -3,11 +3,13 @@
 namespace Lljm\HealthBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Lljm\HealthBundle\Entity\Height;
 use Lljm\UserBundle\Entity\User;
 use Lljm\HealthBundle\Form\HeightType;
 use Lljm\HealthBundle\Form\HeightEditType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Request;
 
 class HeightController extends Controller
 {
@@ -36,29 +38,27 @@ class HeightController extends Controller
   /**
    * @Security("has_role('ROLE_USER')")
    */
-       public function heightaddAction()
+       public function heightaddAction(Request $request)
     {
         $height = new Height;
 
-        $form = $this->createForm(new HeightType, $height);
+        $form = $this->createForm(HeightType::class, $height);
+        $form->handleRequest($request);
 
 
-    $request = $this->get('request');
+    if($form->isSubmitted() && $form->isValid()) {
 
-    if ($request->getMethod() == 'POST') {
-      $form->bind($request);
-
-      if ($form->isValid()) {
         $em = $this->getDoctrine()->getManager();
         $em->persist($height);
         $em->flush();
 
         return $this->redirect($this->generateUrl('health_height'));
       }
-    }
+    else{
         return $this->render('LljmHealthBundle:Height:heightadd.html.twig', array(
             'form' => $form->createView()
         ));
   }
+}
 
 }

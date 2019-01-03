@@ -2,10 +2,12 @@
 
 namespace Lljm\HealthBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Lljm\UserBundle\Entity\UserRepository;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class HeightType extends AbstractType
 {
@@ -17,21 +19,19 @@ class HeightType extends AbstractType
     {
         $builder
             ->add('heightValue')
-            ->add('user', 'entity', array(
+            ->add('user', EntityType::class, array(
               'class'    => 'LljmUserBundle:User',
               'query_builder' => function(UserRepository $er) {
                 return $er->createQueryBuilder('u')
                     ->orderBy('u.firstname', 'ASC');
               },
-              'property' => 'firstname',
+              'choice_label' => 'firstname',
               'multiple' => false,
               'expanded' => false
                 ))
-            ->add('dateRead', 'date', array(
-                                    'widget' => 'single_text',
-                                    'input' => 'datetime',
-                                    'format' => 'yyyy-MM-dd',
-                                    'attr' => array('class' => 'datepicker'),
+            ->add('dateRead',  DateType::class, array(
+                'widget' => 'single_text',
+                'attr' => array('class' => 'form-control datepicker')
                 ))
         ;
     }
