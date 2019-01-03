@@ -1294,3 +1294,4 @@ bd487a,127.0.0.1,GET,https://127.0.0.1/app_dev.php/fr/tasks,1546469739,,200
 6a77cc,127.0.0.1,GET,https://127.0.0.1/app_dev.php/fr/taskedit/15,1546469773,,200
 0ee6a1,127.0.0.1,POST,https://127.0.0.1/app_dev.php/fr/taskedit/15,1546469776,,302
 391e90,127.0.0.1,GET,https://127.0.0.1/app_dev.php/fr/tasks,1546469776,,200
+c9c419,127.0.0.1,GET,https://127.0.0.1/app_dev.php/fr/taskadd,1546502458,,200
