@@ -12,10 +12,79 @@
   <a class="btn btn-default btn-sm glyphicon glyphicon-plus" href="{{ path('tasks_taskadd') }}">
     {{ 'Add' | trans }}
   </a>
-
-
 </div>
 
+   <div style="width:100%;">
+        <canvas id="ganttChart" height="150"></canvas>
+    </div>
+
+<script>
+var ctx = document.getElementById("ganttChart").getContext('2d');
+
+function getRandomColor() {
+var letters = '0123456789ABCDEF'.split('');
+var color = '#';
+for (var i = 0; i < 6; i++ ) {
+    color += letters[Math.floor(Math.random() * 16)];
+}
+return color;
+}
+
+var scatterChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [
+{% set ymax = '' %}
+{% for taskrecord in taskrecords %}
+            {
+
+                label: '{{ taskrecord.taskdesc }}',
+                backgroundColor: ['rgba(0, 0, 0, 0.1)'],
+                borderColor: getRandomColor(),
+                fill: false,
+                borderWidth : 10,
+                pointRadius : 0,
+                data: [
+                    {
+                        x: '{{ taskrecord.dateStart | date("Y-m-d")}}',
+                        y: {{ loop.revindex}}
+                    }, {
+                        x: '{{ taskrecord.dateEnd | date("Y-m-d")}}',
+                        y: {{ loop.revindex}}
+                    }
+                ]
+            },
+{% set ymax = loop.length %}
+{% endfor %}
+            ]
+        },
+        options: {
+            legend : {
+                display : true
+            },
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                    position: 'bottom',
+                    ticks : {
+                        beginAtzero :false,
+                        stepSize : 1
+                    }
+                }],
+                yAxes : [{
+                    scaleLabel : {
+                        display : true
+                    },
+                    ticks : {
+                        beginAtZero :true,
+                        max : {{ ymax }} + 1,
+                        stepSize : 1
+                    }
+                }]
+            }
+        }
+    });
+</script>
 <div>
 
 
