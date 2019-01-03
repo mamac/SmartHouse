@@ -1,0 +1,16 @@
+
+{% extends "LljmTasksBundle::layout.html.twig" %}
+
+
+{% block title %}
+  Task Management - {{ parent() }}
+{% endblock %}
+
+{% block lljm_tasks_body %}
+
+  <h2>{{ 'Update a task' | trans }}</h2>
+<ul>
+  {% include "LljmTasksBundle:Default:taskeditform.html.twig" %}
+</ul>
+{% endblock %}
+

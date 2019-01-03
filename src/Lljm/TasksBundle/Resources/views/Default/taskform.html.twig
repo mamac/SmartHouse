@@ -1,0 +1,38 @@
+<div>
+<form action="{{ path('tasks_taskadd') }}" method="post">
+
+{{ form_errors(form) }}
+
+<div class="input-group">
+
+
+	<div class="form-group">
+	  {{ form_label(form.taskdesc, "Description") }}
+	  {{ form_errors(form.taskdesc) }}
+	  {{ form_widget(form.taskdesc) }}
+	</div>
+	<div class="form-group">
+	  {{ form_label(form.dateStart, "Start date") }}
+	  {{ form_errors(form.dateStart) }}
+	  {{ form_widget(form.dateStart) }}
+	</div>
+	<div class="form-group">
+	  {{ form_label(form.dateEnd, "End date") }}
+	  {{ form_errors(form.dateEnd) }}
+	  {{ form_widget(form.dateEnd) }}
+	</div>
+	<br>
+	<div class="form-group">
+	  {{ form_label(form.user, "Assignee") }}
+	  {{ form_errors(form.user) }}
+	  {{ form_widget(form.user) }}
+	</div>
+	{{ form_rest(form) }}
+
+	<div>
+	  <input type="submit" class="btn btn-primary" />
+	</div>
+</div>
+
+</form>
+</div>

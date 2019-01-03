@@ -103,6 +103,26 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        // tasks
+        if (preg_match('#^/(?P<_locale>[^/]++)/tasks$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'tasks')), array (  '_controller' => 'Lljm\\TasksBundle\\Controller\\DefaultController::indexAction',));
+        }
+
+        // tasks_taskadd
+        if (preg_match('#^/(?P<_locale>[^/]++)/taskadd$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'tasks_taskadd')), array (  '_controller' => 'Lljm\\TasksBundle\\Controller\\DefaultController::taskaddAction',));
+        }
+
+        // tasks_taskdel
+        if (preg_match('#^/(?P<_locale>[^/]++)/taskdel/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'tasks_taskdel')), array (  '_controller' => 'Lljm\\TasksBundle\\Controller\\DefaultController::taskdelAction',));
+        }
+
+        // tasks_taskedit
+        if (preg_match('#^/(?P<_locale>[^/]++)/taskedit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'tasks_taskedit')), array (  '_controller' => 'Lljm\\TasksBundle\\Controller\\DefaultController::taskeditAction',));
+        }
+
         // geolocation_index
         if (preg_match('#^/(?P<_locale>[^/]++)/geolocation_index(?:/(?P<datefrom>[^/,]++)(?:,(?P<dateto>[^/,]++)(?:,(?P<userid>[^/]++))?)?)?$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'geolocation_index')), array (  '_controller' => 'Lljm\\GeolocationBundle\\Controller\\DefaultController::indexAction',  'datefrom' => '',  'dateto' => '',  'userid' => '',));

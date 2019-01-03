@@ -1,0 +1,29 @@
+
+{% extends "LljmTasksBundle::layout.html.twig" %}
+
+{% block title %}
+  Delete task - {{ parent() }}
+{% endblock %}
+
+{% block lljm_tasks_body %}
+
+  <h2>{{ 'Delete a task' | trans }}</h2>
+
+  <p>
+    {{ 'Confirm you want to delete the task below' | trans }}:
+    <br>
+    - {{ task.id }}<br>
+    - {{ task.taskdesc }}<br>
+    - {{ task.dateStart | date("Y-m-d") }}<br>
+    - {{ task.dateEnd | date("Y-m-d") }}<br>
+  </p>
+
+  <form action="{{ path('tasks_taskdel', {'id': task.id}) }}" method="post">
+    <a href="{{ path('tasks')}}" class="btn btn-default glyphicon glyphicon-chevron-left">
+      Back
+    </a>
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    {{ form_rest(form) }}
+  </form>
+
+{% endblock %}

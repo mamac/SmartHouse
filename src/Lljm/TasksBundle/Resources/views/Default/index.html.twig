@@ -1,0 +1,56 @@
+{% extends "LljmTasksBundle::layout.html.twig" %}
+
+{% block title %}
+  Task Management - {{ parent() }}
+{% endblock %}
+
+{% block lljm_tasks_body %}
+
+<h2>{{ 'Task Management' | trans }}</h2>
+
+<div>
+  <a class="btn btn-default btn-sm glyphicon glyphicon-plus" href="{{ path('tasks_taskadd') }}">
+    {{ 'Add' | trans }}
+  </a>
+
+
+</div>
+
+<div>
+
+
+    <div class="table-responsive">
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>{{ 'Description' | trans }}</th>
+            <th>{{ 'Start date' | trans }}</th>
+            <th>{{ 'End date' | trans }}</th>
+            <th>{{ 'Assignee' | trans }}</th>
+            <th>{{ 'Completed' | trans }}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+  {% for taskrecord in taskrecords %}
+          <tr>
+            <td>{{ taskrecord.taskdesc }}</td>
+            <td>{{ taskrecord.dateStart | date("Y-m-d")}}</td>
+            <td>{{ taskrecord.dateEnd | date("Y-m-d")}}</td>
+            <td>{{ taskrecord.username }}</td>
+            <td>{% if taskrecord.completed == true %} <span class="btn glyphicon glyphicon-check"> {% endif %}</td>
+            <td>
+              <a class="btn glyphicon glyphicon-pencil red" href="{{ path('tasks_taskedit', {'id': taskrecord.id}) }}">
+              <a class="btn glyphicon glyphicon-trash red " href="{{ path('tasks_taskdel', {'id': taskrecord.id}) }}">
+            </td>
+          </tr>
+  {% else %}
+    <p>{{ 'No record in this table' | trans }}.</p>
+  {% endfor %}
+        </tbody>
+      </table>
+    </div>
+</div>
+
+{% endblock %}

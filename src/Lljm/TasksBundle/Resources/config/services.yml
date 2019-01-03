@@ -1,0 +1,4 @@
+services:
+#    tasks.example:
+#        class: LljmTasksBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

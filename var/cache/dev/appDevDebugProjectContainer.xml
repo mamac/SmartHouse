@@ -22,9 +22,9 @@
       <parameter key="LljmHealthBundle">Lljm\HealthBundle\LljmHealthBundle</parameter>
       <parameter key="LljmAdminBundle">Lljm\AdminBundle\LljmAdminBundle</parameter>
       <parameter key="LljmGeolocationBundle">Lljm\GeolocationBundle\LljmGeolocationBundle</parameter>
+      <parameter key="LljmTasksBundle">Lljm\TasksBundle\LljmTasksBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
-      <parameter key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -92,6 +92,11 @@
         <parameter key="path">/home/lljm/web/src/Lljm/GeolocationBundle</parameter>
         <parameter key="namespace">Lljm\GeolocationBundle</parameter>
       </parameter>
+      <parameter key="LljmTasksBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/home/lljm/web/src/Lljm/TasksBundle</parameter>
+        <parameter key="namespace">Lljm\TasksBundle</parameter>
+      </parameter>
       <parameter key="WebProfilerBundle" type="collection">
         <parameter key="parent">null</parameter>
         <parameter key="path">/home/lljm/web/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle</parameter>
@@ -101,11 +106,6 @@
         <parameter key="parent">null</parameter>
         <parameter key="path">/home/lljm/web/vendor/sensio/distribution-bundle</parameter>
         <parameter key="namespace">Sensio\Bundle\DistributionBundle</parameter>
-      </parameter>
-      <parameter key="SensioGeneratorBundle" type="collection">
-        <parameter key="parent">null</parameter>
-        <parameter key="path">/home/lljm/web/vendor/sensio/generator-bundle</parameter>
-        <parameter key="namespace">Sensio\Bundle\GeneratorBundle</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -727,7 +727,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>bVcQWC5+D-A3RjQshq0Y66</argument>
+      <argument>RyPB4GOTILe9yXMiDZbtOs</argument>
       <argument>/home/lljm/web/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -737,7 +737,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>bVcQWC5+D-A3RjQshq0Y66</argument>
+      <argument>RyPB4GOTILe9yXMiDZbtOs</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -1434,6 +1434,7 @@
             <argument>/home/lljm/web/src/Lljm/HealthBundle/Resources/translations/messages.fr.xlf</argument>
             <argument>/home/lljm/web/src/Lljm/AdminBundle/Resources/translations/messages.fr.xlf</argument>
             <argument>/home/lljm/web/src/Lljm/GeolocationBundle/Resources/translations/messages.fr.xlf</argument>
+            <argument>/home/lljm/web/src/Lljm/TasksBundle/Resources/translations/messages.fr.xlf</argument>
           </argument>
           <argument key="sk" type="collection">
             <argument>/home/lljm/web/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sk.xlf</argument>
@@ -2080,6 +2081,14 @@
       </call>
       <call method="addListener">
         <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument type="service" id="debug.debug_handlers_listener"/>
+          <argument>configure</argument>
+        </argument>
+        <argument>2048</argument>
+      </call>
+      <call method="addListener">
+        <argument>console.command</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
           <argument>configure</argument>
@@ -3142,12 +3151,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>5a94757780c191.64600549</argument>
+      <argument>5c2dd497902c84.09331387</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>5a94757780c191.64600549</argument>
+      <argument>5c2dd497902c84.09331387</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -3364,6 +3373,10 @@
         <argument>LljmGeolocation</argument>
       </call>
       <call method="addPath">
+        <argument>/home/lljm/web/src/Lljm/TasksBundle/Resources/views</argument>
+        <argument>LljmTasks</argument>
+      </call>
+      <call method="addPath">
         <argument>/home/lljm/web/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views</argument>
         <argument>WebProfiler</argument>
       </call>
@@ -3532,6 +3545,10 @@
       <call method="addPath">
         <argument>/home/lljm/web/src/Lljm/GeolocationBundle/Resources/views</argument>
         <argument>LljmGeolocation</argument>
+      </call>
+      <call method="addPath">
+        <argument>/home/lljm/web/src/Lljm/TasksBundle/Resources/views</argument>
+        <argument>LljmTasks</argument>
       </call>
       <call method="addPath">
         <argument>/home/lljm/web/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views</argument>
@@ -3934,6 +3951,7 @@
           <argument key="LljmUserBundle">Lljm\UserBundle\Entity</argument>
           <argument key="LljmHealthBundle">Lljm\HealthBundle\Entity</argument>
           <argument key="LljmGeolocationBundle">Lljm\GeolocationBundle\Entity</argument>
+          <argument key="LljmTasksBundle">Lljm\TasksBundle\Entity</argument>
         </argument>
       </call>
       <call method="setMetadataCacheImpl">
@@ -3983,6 +4001,7 @@
         <argument>/home/lljm/web/src/Lljm/UserBundle/Entity</argument>
         <argument>/home/lljm/web/src/Lljm/HealthBundle/Entity</argument>
         <argument>/home/lljm/web/src/Lljm/GeolocationBundle/Entity</argument>
+        <argument>/home/lljm/web/src/Lljm/TasksBundle/Entity</argument>
       </argument>
     </service>
     <service id="doctrine.orm.default_metadata_driver" class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false">
@@ -4001,6 +4020,10 @@
       <call method="addDriver">
         <argument type="service" id="doctrine.orm.default_annotation_metadata_driver"/>
         <argument>Lljm\GeolocationBundle\Entity</argument>
+      </call>
+      <call method="addDriver">
+        <argument type="service" id="doctrine.orm.default_annotation_metadata_driver"/>
+        <argument>Lljm\TasksBundle\Entity</argument>
       </call>
       <call method="addDriver">
         <argument type="service">
@@ -4611,7 +4634,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>dPa0kJO-XN</argument>
       <argument>0</argument>
-      <argument>bVcQWC5+D-A3RjQshq0Y66</argument>
+      <argument>RyPB4GOTILe9yXMiDZbtOs</argument>
       <argument>/home/lljm/web/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4619,7 +4642,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>-NLM5VOhpc</argument>
       <argument>0</argument>
-      <argument>bVcQWC5+D-A3RjQshq0Y66</argument>
+      <argument>RyPB4GOTILe9yXMiDZbtOs</argument>
       <argument>/home/lljm/web/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4627,7 +4650,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>F3XPFFaKM4</argument>
       <argument>0</argument>
-      <argument>bVcQWC5+D-A3RjQshq0Y66</argument>
+      <argument>RyPB4GOTILe9yXMiDZbtOs</argument>
       <argument>/home/lljm/web/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4635,7 +4658,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>p6AsSvuW3s</argument>
       <argument>0</argument>
-      <argument>bVcQWC5+D-A3RjQshq0Y66</argument>
+      <argument>RyPB4GOTILe9yXMiDZbtOs</argument>
       <argument>/home/lljm/web/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>

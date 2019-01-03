@@ -422,6 +422,46 @@
                 <source>Monthly electricity consumption</source>
                 <target>Consomation electrique mensuelle</target>
             </trans-unit>
+            <trans-unit id="106">
+                <source>Tools</source>
+                <target>Outils</target>
+            </trans-unit>
+            <trans-unit id="107">
+                <source>Tasks</source>
+                <target>Taches</target>
+            </trans-unit>
+            <trans-unit id="108">
+                <source>Health - Weight</source>
+                <target>Sante - Poids</target>
+            </trans-unit>
+            <trans-unit id="109">
+                <source>Health - Height</source>
+                <target>Sante - Taille</target>
+            </trans-unit>
+            <trans-unit id="110">
+                <source>Task Management</source>
+                <target>Gestion des taches</target>
+            </trans-unit>
+            <trans-unit id="111">
+                <source>Start date</source>
+                <target>Date debut</target>
+            </trans-unit>
+            <trans-unit id="112">
+                <source>End date</source>
+                <target>Date fin</target>
+            </trans-unit>
+            <trans-unit id="113">
+                <source>Completed</source>
+                <target>Termine</target>
+            </trans-unit>
+            <trans-unit id="114">
+                <source>Add a task</source>
+                <target>Ajouter une tache</target>
+            </trans-unit>
+            <trans-unit id="115">
+                <source>Delete a task</source>
+                <target>Supprimer une tache</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
