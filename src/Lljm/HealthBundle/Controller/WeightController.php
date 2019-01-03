@@ -3,11 +3,13 @@
 namespace Lljm\HealthBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Lljm\HealthBundle\Entity\Weight;
 use Lljm\UserBundle\Entity\User;
 use Lljm\HealthBundle\Form\WeightType;
 use Lljm\HealthBundle\Form\WeightEditType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Request;
 
 class WeightController extends Controller
 {
@@ -36,29 +38,26 @@ class WeightController extends Controller
   /**
    * @Security("has_role('ROLE_USER')")
    */
-       public function weightaddAction()
+       public function weightaddAction(Request $request)
     {
         $weight = new Weight;
 
-        $form = $this->createForm(new WeightType, $weight);
+        $form = $this->createForm(WeightType::class, $weight);
+        $form->handleRequest($request);
 
+    if($form->isSubmitted() && $form->isValid()) {
 
-    $request = $this->get('request');
-
-    if ($request->getMethod() == 'POST') {
-      $form->bind($request);
-
-      if ($form->isValid()) {
         $em = $this->getDoctrine()->getManager();
         $em->persist($weight);
         $em->flush();
 
         return $this->redirect($this->generateUrl('health_weight'));
       }
-    }
-        return $this->render('LljmHealthBundle:Weight:weightadd.html.twig', array(
+    else{
+            return $this->render('LljmHealthBundle:Weight:weightadd.html.twig', array(
             'form' => $form->createView()
         ));
   }
+}
 
 }
