@@ -168,43 +168,49 @@ class __TwigTemplate_28625c5b822f3c4400e1ee00a07785dbdd8a4a42c0c7b1051cb2e0946b5
             echo "            <li class=\"dropdown\">
               <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">";
             // line 91
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans("Health"), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans("Tools"), "html", null, true);
             echo " <b class=\"caret\"></b></a>
               <ul class=\"dropdown-menu\">
                 <li><a href=\"";
             // line 93
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("health_weight");
-            echo "\">";
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans("Weight"), "html", null, true);
-            echo "</a></li>
-                <li><a href=\"";
-            // line 94
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("health_height");
-            echo "\">";
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans("Height"), "html", null, true);
-            echo "</a></li>
-              </ul>
-            </li>
-            <li><a href=\"";
-            // line 97
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("geolocation_index");
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans("Geolocation"), "html", null, true);
             echo "</a></li>
+                <li><a href=\"";
+            // line 94
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("health_weight");
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans("Health - Weight"), "html", null, true);
+            echo "</a></li>
+                <li><a href=\"";
+            // line 95
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("health_height");
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans("Health - Height"), "html", null, true);
+            echo "</a></li>
+                <li><a href=\"";
+            // line 96
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tasks");
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans("Tasks"), "html", null, true);
+            echo "</a></li>
+              </ul>
+            </li>
             ";
         }
-        // line 99
+        // line 100
         echo "            ";
         if ($this->env->getExtension('Symfony\Bridge\Twig\Extension\SecurityExtension')->isGranted("ROLE_ADMIN")) {
-            // line 100
+            // line 101
             echo "            <li class=\"dropdown\">
               <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">";
-            // line 101
+            // line 102
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans("Admin"), "html", null, true);
             echo " <b class=\"caret\"></b></a>
               <ul class=\"dropdown-menu\">
                 <li><a href=\"";
-            // line 103
+            // line 104
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("admin_user");
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans("Users"), "html", null, true);
@@ -213,7 +219,7 @@ class __TwigTemplate_28625c5b822f3c4400e1ee00a07785dbdd8a4a42c0c7b1051cb2e0946b5
             </li>
             ";
         }
-        // line 107
+        // line 108
         echo "            <li><a href=\"";
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("home_about");
         echo "\">";
@@ -222,17 +228,17 @@ class __TwigTemplate_28625c5b822f3c4400e1ee00a07785dbdd8a4a42c0c7b1051cb2e0946b5
           </ul>
           <ul class=\"nav navbar-nav navbar-right\">
             ";
-        // line 110
+        // line 111
         if (twig_get_attribute($this->env, $this->getSourceContext(), ($context["app"] ?? null), "user", array())) {
-            // line 111
+            // line 112
             echo "            <li class=\"dropdown\">
               <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><span class=\"glyphicon glyphicon-user\" /> ";
-            // line 112
+            // line 113
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), twig_get_attribute($this->env, $this->getSourceContext(), ($context["app"] ?? null), "user", array()), "firstname", array()), "html", null, true);
             echo " <b class=\"caret\"></b></a>
                 <ul class=\"dropdown-menu\">
                   <li><a class=\"glyphicon glyphicon-log-out\" href=\"";
-            // line 114
+            // line 115
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("fos_user_security_logout");
             echo "\"> ";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans("Logout"), "html", null, true);
@@ -241,15 +247,15 @@ class __TwigTemplate_28625c5b822f3c4400e1ee00a07785dbdd8a4a42c0c7b1051cb2e0946b5
             </li>
             ";
         } else {
-            // line 118
+            // line 119
             echo "            <li class=\"dropdown\">
               <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><span class=\"glyphicon glyphicon-user\" /> ";
-            // line 119
+            // line 120
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans("Anonymous"), "html", null, true);
             echo " <b class=\"caret\"></b></a>
                 <ul class=\"dropdown-menu\">
                   <li><a class=\"glyphicon glyphicon-log-in\" href=\"";
-            // line 121
+            // line 122
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("fos_user_security_login");
             echo "\"> ";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans("Login"), "html", null, true);
@@ -258,23 +264,23 @@ class __TwigTemplate_28625c5b822f3c4400e1ee00a07785dbdd8a4a42c0c7b1051cb2e0946b5
             </li>
             ";
         }
-        // line 125
+        // line 126
         echo "            <li class=\"dropdown\">
               <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><span class=\"glyphicon glyphicon-book\" /> ";
-        // line 126
+        // line 127
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans("Language"), "html", null, true);
         echo " [";
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), twig_get_attribute($this->env, $this->getSourceContext(), ($context["app"] ?? null), "request", array()), "locale", array()), "html", null, true);
         echo "]<b class=\"caret\"></b></a>
                 <ul class=\"dropdown-menu\">
                  <li><a href=\"";
-        // line 128
+        // line 129
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("lljm_home_homepage", array("_locale" => "en"));
         echo "\">";
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans("English"), "html", null, true);
         echo "</a></li>
                   <li><a href=\"";
-        // line 129
+        // line 130
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("lljm_home_homepage", array("_locale" => "fr"));
         echo "\">";
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans("French"), "html", null, true);
@@ -291,9 +297,9 @@ class __TwigTemplate_28625c5b822f3c4400e1ee00a07785dbdd8a4a42c0c7b1051cb2e0946b5
       <div class=\"row\">
         <div id=\"content\" class=\"span9\">
           ";
-        // line 141
+        // line 142
         $this->displayBlock('body', $context, $blocks);
-        // line 143
+        // line 144
         echo "        </div>
       </div>
 
@@ -301,16 +307,16 @@ class __TwigTemplate_28625c5b822f3c4400e1ee00a07785dbdd8a4a42c0c7b1051cb2e0946b5
 
       <footer>
         <p><img src=\"";
-        // line 149
+        // line 150
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("bundles/lljmhome/images/gentoo-badge3.png"), "html", null, true);
         echo "\"></p>
       </footer>
     </div>
 
   ";
-        // line 153
+        // line 154
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 161
+        // line 162
         echo "
   </body>
 </html>";
@@ -416,26 +422,26 @@ class __TwigTemplate_28625c5b822f3c4400e1ee00a07785dbdd8a4a42c0c7b1051cb2e0946b5
     ";
     }
 
-    // line 141
+    // line 142
     public function block_body($context, array $blocks = array())
     {
-        // line 142
+        // line 143
         echo "          ";
     }
 
-    // line 153
+    // line 154
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 154
+        // line 155
         echo "    <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script type=\"text/javascript\" src=\"";
-        // line 157
+        // line 158
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/bootstrap.js"), "html", null, true);
         echo "\"></script>
     <script type=\"text/javascript\" src=\"";
-        // line 158
+        // line 159
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/core.js"), "html", null, true);
         echo "\"></script>
 
@@ -454,7 +460,7 @@ class __TwigTemplate_28625c5b822f3c4400e1ee00a07785dbdd8a4a42c0c7b1051cb2e0946b5
 
     public function getDebugInfo()
     {
-        return array (  439 => 158,  435 => 157,  430 => 154,  427 => 153,  423 => 142,  420 => 141,  412 => 42,  408 => 41,  404 => 40,  398 => 37,  392 => 34,  386 => 31,  381 => 29,  377 => 28,  373 => 27,  369 => 26,  365 => 25,  361 => 24,  355 => 21,  351 => 20,  347 => 19,  342 => 17,  338 => 16,  334 => 15,  329 => 14,  326 => 13,  320 => 11,  314 => 161,  312 => 153,  305 => 149,  297 => 143,  295 => 141,  278 => 129,  272 => 128,  265 => 126,  262 => 125,  253 => 121,  248 => 119,  245 => 118,  236 => 114,  231 => 112,  228 => 111,  226 => 110,  217 => 107,  208 => 103,  203 => 101,  200 => 100,  197 => 99,  190 => 97,  182 => 94,  176 => 93,  171 => 91,  168 => 90,  166 => 89,  158 => 86,  152 => 85,  146 => 84,  140 => 83,  136 => 82,  132 => 81,  125 => 79,  119 => 78,  113 => 77,  108 => 76,  100 => 73,  94 => 72,  88 => 71,  84 => 70,  78 => 69,  73 => 68,  71 => 67,  66 => 65,  58 => 60,  42 => 46,  40 => 13,  35 => 11,  23 => 1,);
+        return array (  445 => 159,  441 => 158,  436 => 155,  433 => 154,  429 => 143,  426 => 142,  418 => 42,  414 => 41,  410 => 40,  404 => 37,  398 => 34,  392 => 31,  387 => 29,  383 => 28,  379 => 27,  375 => 26,  371 => 25,  367 => 24,  361 => 21,  357 => 20,  353 => 19,  348 => 17,  344 => 16,  340 => 15,  335 => 14,  332 => 13,  326 => 11,  320 => 162,  318 => 154,  311 => 150,  303 => 144,  301 => 142,  284 => 130,  278 => 129,  271 => 127,  268 => 126,  259 => 122,  254 => 120,  251 => 119,  242 => 115,  237 => 113,  234 => 112,  232 => 111,  223 => 108,  214 => 104,  209 => 102,  206 => 101,  203 => 100,  194 => 96,  188 => 95,  182 => 94,  176 => 93,  171 => 91,  168 => 90,  166 => 89,  158 => 86,  152 => 85,  146 => 84,  140 => 83,  136 => 82,  132 => 81,  125 => 79,  119 => 78,  113 => 77,  108 => 76,  100 => 73,  94 => 72,  88 => 71,  84 => 70,  78 => 69,  73 => 68,  71 => 67,  66 => 65,  58 => 60,  42 => 46,  40 => 13,  35 => 11,  23 => 1,);
     }
 
     public function getSourceContext()
