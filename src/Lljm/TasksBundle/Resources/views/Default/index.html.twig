@@ -56,6 +56,25 @@ var scatterChart = new Chart(ctx, {
             },
 {% set ymax = loop.length %}
 {% endfor %}
+
+            {
+
+                label: 'Today',
+                backgroundColor: ['rgba(255, 0, 0, 0.1)'],
+                borderColor: ['rgba(255, 0, 0, 1)'],
+                fill: true,
+                borderWidth : 1,
+                pointRadius : 0,
+                data: [
+                    {
+                        x: '{{ "now" | date("Y-m-d")}}',
+                        y: 0
+                    }, {
+                        x: '{{ "now" | date("Y-m-d")}}',
+                        y: {{ ymax +1 }}
+                    }
+                ]
+            },
             ]
         },
         options: {
