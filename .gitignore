@@ -7,5 +7,7 @@
 !app/logs/.gitkeep
 /build/
 /vendor/
+/var/cache/
+/var/logs/
 #/bin/
 #/composer.phar
