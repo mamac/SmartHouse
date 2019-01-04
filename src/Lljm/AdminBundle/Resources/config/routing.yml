@@ -12,4 +12,8 @@ admin_userdel:
 
 admin_useredit:
     path:     /admin_useredit/{username}
+    defaults: { _controller: LljmAdminBundle:User:adminedituser }
+
+useredit:
+    path:     /useredit/{username}
     defaults: { _controller: LljmAdminBundle:User:edituser }

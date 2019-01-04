@@ -79,7 +79,7 @@ class UserController extends Controller
   /**
    * @Security("has_role('ROLE_ADMIN')")
    */
-    public function edituserAction( $username, Request $request )
+    public function adminedituserAction( $username, Request $request )
     {
 
       $userManager = $this->get('fos_user.user_manager');
@@ -96,9 +96,10 @@ class UserController extends Controller
         return $this->redirect($this->generateUrl('admin_user'));
       }
 
-        return $this->render('LljmAdminBundle:User:useredit.html.twig', array(
+        return $this->render('LljmAdminBundle:User:adminuseredit.html.twig', array(
           'user' => $user,
           'form' => $form->createView()
           ));
     }
+
 }
