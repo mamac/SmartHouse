@@ -29,6 +29,16 @@
 	  {{ form_errors(form.country) }}
 	  {{ form_widget(form.country) }}
 	</div>
+	<div class="form-group">
+	  {{ form_label(form.longitude, "Longitude") }}
+	  {{ form_errors(form.longitude) }}
+	  {{ form_widget(form.longitude) }}
+	</div>
+	<div class="form-group">
+	  {{ form_label(form.latitude, "Latitude") }}
+	  {{ form_errors(form.latitude) }}
+	  {{ form_widget(form.latitude) }}
+	</div>
 	{{ form_rest(form) }}
 
 	<div>

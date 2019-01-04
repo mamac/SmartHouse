@@ -21,6 +21,8 @@ class HouseType extends AbstractType
             ->add('postcode')
             ->add('city')
             ->add('country')
+            ->add('longitude')
+            ->add('latitude')
         ;
     }
     
