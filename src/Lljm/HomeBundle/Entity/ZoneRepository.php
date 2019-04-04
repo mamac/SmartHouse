@@ -23,7 +23,8 @@ class ZoneRepository extends EntityRepository
       a.zonename,
       a.heatingenabled,
       a.currenttemp,
-      a.heatingstatus
+      a.heatingstatus,
+      a.ventilationstatus
       FROM LljmHomeBundle:Zone a
       ORDER BY a.zonename
       ");
@@ -47,6 +48,24 @@ class ZoneRepository extends EntityRepository
       FROM LljmHomeBundle:Zone a
       LEFT JOIN LljmHomeBundle:Heatingmode b WITH b.id=a.heatingmode
       WHERE a.heatingenabled = 1
+      ORDER BY a.zonename
+      ");
+    return $query->getResult();
+
+  }
+
+  public function GetVentilationzone()
+  {
+
+    $em = $this->getEntityManager();
+    $query = $em->createQuery("
+      SELECT
+      a.id,
+      a.zonename,
+      a.ventilationschedule,
+      a.ventilationstatus
+      FROM LljmHomeBundle:Zone a
+      WHERE a.ventilationenabled = 1
       ORDER BY a.zonename
       ");
     return $query->getResult();

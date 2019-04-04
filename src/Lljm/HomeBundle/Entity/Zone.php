@@ -78,7 +78,26 @@ class Zone
      */
     private $heatschedule;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ventilationenabled", type="boolean", nullable = true)
+     */
+    private $ventilationenabled;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ventilationstatus", type="boolean", nullable = true)
+     */
+    private $ventilationstatus;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ventilationschedule", type="string", length=24, nullable = true)
+     */
+    private $ventilationschedule;
     /**
      * Get id
      *
@@ -273,4 +292,72 @@ class Zone
     {
         return $this->heatingstatus;
     }
-}
+
+    /**
+     * Set ventilationenabled
+     *
+     * @param boolean $ventilationenabled
+     * @return Zone
+     */
+    public function setVentilationenabled($ventilationenabled)
+    {
+        $this->ventilationenabled = $ventilationenabled;
+
+        return $this;
+    }
+
+    /**
+     * Get ventilationenabled
+     *
+     * @return boolean 
+     */
+    public function getVentilationenabled()
+    {
+        return $this->ventilationenabled;
+    }
+
+    /**
+     * Set ventilationstatus
+     *
+     * @param boolean $ventilationstatus
+     * @return Zone
+     */
+    public function setVentilationstatus($ventilationstatus)
+    {
+        $this->ventilationstatus = $ventilationstatus;
+
+        return $this;
+    }
+
+    /**
+     * Get ventilationstatus
+     *
+     * @return boolean 
+     */
+    public function getVentilationstatus()
+    {
+        return $this->ventilationstatus;
+    }
+
+    /**
+     * Set ventilationschedule
+     *
+     * @param string $ventilationschedule
+     * @return Zone
+     */
+    public function setVentilationschedule($ventilationschedule)
+    {
+        $this->ventilationschedule = $ventilationschedule;
+
+        return $this;
+    }
+
+    /**
+     * Get ventilationschedule
+     *
+     * @return string 
+     */
+    public function getVentilationschedule()
+    {
+        return $this->ventilationschedule;
+    }}

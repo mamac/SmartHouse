@@ -13,13 +13,13 @@ class VentilationController extends Controller
    */
     public function indexAction()
     {
-	    $ventilationswitches = $this->getDoctrine()
+	    $zoneventilations = $this->getDoctrine()
 	                     ->getManager()
-	                     ->getRepository('LljmHomeBundle:Node')
-	                     ->getVentilationnodes();
+	                     ->getRepository('LljmHomeBundle:Zone')
+	                     ->getVentilationzone();
 
         return $this->render('LljmHomeBundle:Ventilation:index.html.twig', array(
-	      'ventilationswitches' => $ventilationswitches
+	      'zoneventilations' => $zoneventilations
 	    ));
     }
 }

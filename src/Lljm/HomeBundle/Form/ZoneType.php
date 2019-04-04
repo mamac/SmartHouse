@@ -18,6 +18,7 @@ class ZoneType extends AbstractType
         $builder
             ->add('zonename')
             ->add('heatingenabled')
+            ->add('ventilationenabled')
         ;
     }
     
