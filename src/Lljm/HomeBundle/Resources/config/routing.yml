@@ -150,6 +150,10 @@ home_action_ventilation:
     path:     /action_ventilation
     defaults: { _controller: LljmHomeBundle:Ventilation:index }
 
+home_action_ventilationedit:
+    path:     /action_ventilationedit/{id}
+    defaults: { _controller: LljmHomeBundle:Ventilation:edit }
+
 home_onezoneheatingmodeupdate:
     path:     /onezoneheatingmodeupdate/{heatingmode}/{id}
     defaults: { _controller: LljmHomeBundle:Heating:onezoneupdate, heatingmode:"", zoneid:"" }

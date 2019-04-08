@@ -1,0 +1,16 @@
+
+{% extends "LljmHomeBundle::layout.html.twig" %}
+
+
+{% block title %}
+  Ventilation update - {{ parent() }}
+{% endblock %}
+
+{% block lljm_home_body %}
+
+  <h2>{{ 'Ventilation management' | trans }}</h2>
+<ul>
+  {% include "LljmHomeBundle:Ventilation:zoneeditform.html.twig" %}
+</ul>
+{% endblock %}
+

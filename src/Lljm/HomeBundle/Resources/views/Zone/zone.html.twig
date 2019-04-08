@@ -24,6 +24,7 @@
                   <th>{{ 'Heated zone' | trans }}</th>
                   <th>{{ 'Current temperature' | trans }}</th>
                   <th>{{ 'Heating status' | trans }}</th>
+                  <th>{{ 'Ventilation status' | trans }}</th>
                   <th colspan = 2>&nbsp;</th>
                 </tr>
               </thead>
@@ -37,6 +38,11 @@
                       {% endif %}</td>
                   <td>{{ zone.currenttemp }}</td>
                   <td>{% if zone.heatingstatus == 1 %}
+                      {{ 'On' }}
+                      {% else %}
+                      {{ 'Off' }}
+                      {% endif %}</td>
+                  <td>{% if zone.ventilationstatus == 1 %}
                       {{ 'On' }}
                       {% else %}
                       {{ 'Off' }}
