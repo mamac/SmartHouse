@@ -462,6 +462,14 @@
                 <source>Delete a task</source>
                 <target>Supprimer une tache</target>
             </trans-unit>
+            <trans-unit id="116">
+                <source>Ventilation schedule for zone</source>
+                <target>Planning de ventilation pour la zone</target>
+            </trans-unit>
+            <trans-unit id="117">
+                <source>Ventilation schedule</source>
+                <target>Planning de ventilation</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

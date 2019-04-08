@@ -24,9 +24,11 @@
                 <tr>
                   <td>{{ zoneventilation.zonename | trans }}</td>
                   <td>{% for i in 0..23%}
-                    *{{ i }}
+                    {% if zoneventilation.ventilationschedule | slice( i, 1) == 1 %} <u><b><i> {% endif %} 
+                    {{ i }}
+                    {% if zoneventilation.ventilationschedule | slice( i, 1) == 1 %} </u></b></i> {% endif %} 
                     {% endfor %}
-                    {{ zoneventilation.ventilationschedule }}</td>
+                  </td>
                   <td>{% if zoneventilation.ventilationstatus == 1 %}
                       <img src="{{ asset('bundles/lljmhome/images/widgets/button/on-button.png') }}" style="width:25px;height:25px;">
                       {% else %}

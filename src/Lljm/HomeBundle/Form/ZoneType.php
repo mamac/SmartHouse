@@ -19,6 +19,7 @@ class ZoneType extends AbstractType
             ->add('zonename')
             ->add('heatingenabled')
             ->add('ventilationenabled')
+            ->add('ventilationschedule')
         ;
     }
     

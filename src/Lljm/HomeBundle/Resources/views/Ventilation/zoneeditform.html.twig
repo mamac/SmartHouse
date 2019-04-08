@@ -1,0 +1,21 @@
+<div>
+<form action="{{ path('home_action_ventilationedit', {'id': zone.id}) }}" method="post">
+
+<div class="input-group">
+	<div class="form-group">
+	  {{ 'Ventilation schedule for zone' | trans }} : {{ zone.zonename}}
+	</div>
+	<div class="form-group">
+	  {{ 'Ventilation schedule' | trans}}
+		{% for i in 0..23%}
+			{{ i }}<input type="checkbox" name="ventilationslot{{ i }}" {% if zone.ventilationschedule |slice( i, 1) == 1 %} checked {% endif %}>
+  		{% endfor %}
+	</div>
+
+	<div>
+	  <input type="submit" class="btn btn-primary" />
+	</div>
+</div>
+
+</form>
+</div>
